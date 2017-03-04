@@ -4,100 +4,134 @@
  */
 
 // jQuery is loaded
-if (window.jQuery) {
 
-    if ($(window).innerWidth() >= 480) {
-        (function ($) {
-            VorsorgefondsJS = {
-                generateChart: function () {
-                    if ($('#chart').length) {
-                        var ctx = $('#chart');
-                        ctx.html('');
-                        if (typeof VorsorgefondsJS.chart != 'undefined') {
-                            VorsorgefondsJS.chart.destroy();
-                        }
-                        if (VorsorgefondsJS.chartX.length) {
-                            // Set height
-                            ctx.prop('height', 20 * VorsorgefondsJS.chartX.length);
+        // Constructor
+        function VorsorgefondsJS(tableContainer, filterForm, chartContainer) {
+            this.$tableContainer = $(tableContainer);
+            this.$filterForm = $(filterForm);
+            this.$chartContainer = $(chartContainer);
+        };
 
-                            VorsorgefondsJS.chart = new Chart(ctx, {
-                                type: 'horizontalBar',
-                                data: {
-                                    labels: VorsorgefondsJS.chartX,
-                                    datasets: [{
-                                        label: 'EFFEKTIVKOSTENQUOTE',
-                                        data: VorsorgefondsJS.chartY,
-                                        backgroundColor: VorsorgefondsJS.chartBg,
-                                        borderColor: VorsorgefondsJS.chartBorder,
-                                        borderWidth: 1
+        VorsorgefondsJS.prototype = {
+
+            constructor: VorsorgefondsJS,
+
+            // Properties
+            chart: null,
+            chartX: null,
+            chartY: null,
+            chartBorder: null,
+            chartBg: null,
+
+            /**
+             * setChartX
+             * @param arrChartX
+             */
+            setChartX: function (arrChartX) {
+                this.chartX = arrChartX;
+            },
+            /**
+             * setChartY
+             * @param arrChartY
+             */
+            setChartY: function (arrChartY) {
+                this.chartY = arrChartY;
+            },
+            /**
+             * setChartBorder
+             * @param arrChartBorder
+             */
+            setChartBorder: function (arrChartBorder) {
+                this.chartBorder = arrChartBorder;
+            },
+
+            /**
+             * setChartBg
+             * @param arrChartBg
+             */
+            setChartBg: function (arrChartBg) {
+                this.chartBg = arrChartBg;
+            },
+
+            /**
+             * generate chart
+             */
+            generateChart: function () {
+                var self = this;
+                if (self.$chartContainer.length) {
+                    self.$chartContainer.html('');
+                    self.destroyChart();
+                    if (self.chartX.length) {
+                        // Set height
+                        self.$chartContainer.prop('height', 20 * self.chartX.length);
+
+                        self.chart = new Chart(self.$chartContainer, {
+                            type: 'horizontalBar',
+                            data: {
+                                labels: self.chartX,
+                                datasets: [{
+                                    label: 'EFFEKTIVKOSTENQUOTE',
+                                    data: self.chartY,
+                                    backgroundColor: self.chartBg,
+                                    borderColor: self.chartBorder,
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        },
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Effektivkosten in %'
+                                        }
                                     }]
                                 },
-                                options: {
-                                    scales: {
-                                        yAxes: [{
-                                            ticks: {
-                                                beginAtZero: true
-                                            }
-                                        }],
-                                        xAxes: [{
-                                            ticks: {
-                                                beginAtZero: true
-                                            },
-                                            scaleLabel: {
-                                                display: true,
-                                                labelString: 'Effektivkosten in %'
-                                            }
-                                        }]
-                                    },
-                                    tooltips: {
-                                        enabled: true,
-                                        mode: 'single',
-                                        callbacks: {
-                                            label: function(tooltipItems, data) {
-                                                return ' ' + tooltipItems.xLabel + ' %';
-                                            }
+                                tooltips: {
+                                    enabled: true,
+                                    mode: 'single',
+                                    callbacks: {
+                                        label: function (tooltipItems, data) {
+                                            return ' ' + tooltipItems.xLabel + ' %';
                                         }
-                                    },
-                                    maintainAspectRatio: true
-                                }
-                            });
-                        }
-
-                    }
-                }
-            };
-
-
-            $(document).ready(function () {
-                if ($('#vorsorgefondsFilteredList').length && $('#vorsorgefondsFilteredListForm').length) {
-                    window.setTimeout(function () {
-                        VorsorgefondsJS.generateChart();
-                    }, 1500);
-
-
-                    var host = window.location;
-                    $('#vorsorgefondsFilteredListForm').change(function () {
-                        // Destroy chart, if there is one
-                        if (typeof VorsorgefondsJS.chart != 'undefined') {
-                            VorsorgefondsJS.chart.destroy();
-                        }
-
-                        $('#vorsorgefondsFilteredList').html('<div class="loadingHtml">Lade...</div>');
-                        var params = $("#vorsorgefondsFilteredListForm").serialize();
-                        $.get(host + '?' + params, function (data) {
-                            window.setTimeout(function () {
-                                $('#vorsorgefondsFilteredList').html(data);
-                            }, 1000);
-                            window.setTimeout(function () {
-                                VorsorgefondsJS.generateChart();
-                            }, 1200);
-
+                                    }
+                                },
+                                maintainAspectRatio: true
+                            }
                         });
-                    });
+                    }
+
                 }
-            });
-        })(jQuery);
-    }
+            },
+
+            destroyChart: function () {
+                if (this.chart !== null) {
+                    this.chart.destroy();
+                }
+            },
+
+            loadData: function () {
+                var self = this;
+                self.$tableContainer.html('<div class="loadingHtml">Lade...</div>');
+                var params = self.$filterForm.serialize();
+                var host = window.location;
+                $.get(host + '?' + params, function (data) {
+                    window.setTimeout(function () {
+                        self.$tableContainer.html(data);
+                    }, 1000);
+                    window.setTimeout(function () {
+                        self.generateChart();
+                    }, 1200);
+
+                });
+            }
+        };
 
 
-}

@@ -13,19 +13,17 @@
     <?php endforeach; ?>
 </table>
 
-<script>
-if(typeof VorsorgefondsJS != 'undefined') {
-    VorsorgefondsJS.chartX = [<?= $this->chartX ?>];
-    VorsorgefondsJS.chartY = [<?= $this->chartY ?>];
-    VorsorgefondsJS.chartBorder = [<?= $this->chartBorder ?>];
-    VorsorgefondsJS.chartBg = [<?= $this->chartBg ?>];
-}
-</script>
-
 <?php if(count($this->rows) < 1): ?>
 <div class="no-items-found alert alert-warning">
     <p><?= $this->noItemsFound ?></p>
 </div>
-
-
 <?php endif; ?>
+
+<script>
+if(typeof VorsorgefondsJS != 'undefined') {
+    objVorsorgefonds.setChartX([<?= $this->chartX ?>]);
+    objVorsorgefonds.setChartY([<?= $this->chartY ?>]);
+    objVorsorgefonds.setChartBorder([<?= $this->chartBorder ?>]);
+    objVorsorgefonds.setChartBg([<?= $this->chartBg ?>]);
+}
+</script>
