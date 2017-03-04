@@ -1,0 +1,11 @@
+05.08.2016 Auftrag für Markus Klenk (m.klenk@fiba-immo.de) von https://www.fondspolicen-analyse.de
+
+Inhalt/Funktionalität:
+Backend-Modul "Fondspolicen":
+Erfassung von Fondspolicen als Contao-Backendmodul.
+
+Frontend-Modul (Policenvergleich):
+User bekommt 3 Select-Felder zu sehen. Er wählt maximal 3 Fondspolicen aus.
+Auf "onchange" werden die gewählten Policen über xhr nachgeladen.
+Nebenbei hat der User noch die Möglichkeit, die Gegenüberstellung als PDF herunterzuladen.
+Umgesetzt mit TCPDF.

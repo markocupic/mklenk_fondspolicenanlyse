@@ -1,0 +1,43 @@
+<?php $this->extend('block_searchable'); ?>
+
+<?php $this->block('content'); ?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+<div id="vorsorgefondsFilteredList" class="table-responsive">
+
+    <table class="table table-striped">
+        <tr>
+            <?php foreach($this->fields as $field): ?>
+            <th class="field-<?= $field ?>"><?= $GLOBALS['TL_LANG']['tl_vorsorgefonds'][$field][0] ?></th>
+            <?php endforeach; ?>
+        </tr>
+    <?php foreach ($this->rows as $row): ?>
+        <tr>
+            <?php foreach($this->fields as $field): ?>
+            <td class="field-<?= $field ?>"><?= $this->setValue($field, $row) ?></td>
+            <?php endforeach; ?>
+        </tr>
+    <?php endforeach; ?>
+    </table>
+
+    <script>
+    if(typeof VorsorgefondsJS != 'undefined') {
+        VorsorgefondsJS.chartX = [<?= $this->chartX ?>];
+        VorsorgefondsJS.chartY = [<?= $this->chartY ?>];
+        VorsorgefondsJS.chartBorder = [<?= $this->chartBorder ?>];
+        VorsorgefondsJS.chartBg = [<?= $this->chartBg ?>];
+    }
+    </script>
+
+    <?php if(count($this->rows) < 1): ?>
+    <div class="no-items-found alert alert-warning">
+        <p><?= $this->noItemsFound ?></p>
+    </div>
+    <?php endif; ?>
+
+</div>
+<canvas id="chart">
+
+</canvas>
+
+<?php $this->endblock(); ?>

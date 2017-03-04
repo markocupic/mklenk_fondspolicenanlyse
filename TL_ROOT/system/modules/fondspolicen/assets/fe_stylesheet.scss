@@ -1,0 +1,121 @@
+
+.mod_fondspolicenvergleich {
+  #printPdf {
+    display:none;
+  }
+  .hidden {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .alignleft {
+    text-align: left;
+  }
+
+  .aligncenter {
+    text-align: center;
+  }
+
+  .alignright {
+    text-align: right;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    min-height: 0.1em;
+    height: auto;
+    position: relative;
+
+    .table {
+      table-layout: fixed !important;
+      width: inherit;
+      overflow-x: auto;
+      border: 0;
+      td {
+        border: 0;
+      }
+
+      .odd {
+        background-color: #fff;
+      }
+
+      .even {
+        background-color: #eee;
+      }
+
+      td.col-1.verticaltext {
+        min-width: 3rem;
+        width: 3px;
+        max-width: 3rem;
+        background-color: #ccc;
+        border-left: 1px solid #ccc;
+        vertical-align: middle;
+        text-align: center;
+        position: relative;
+        img {
+          width: 100%;
+        }
+      }
+
+      td.col-2 {
+        min-width: 15rem;
+        width: 15px;
+        max-width: 15rem;
+      }
+
+      td[class^="col-id-"] {
+        min-width: 17.6rem;
+        width: 17.6px;
+        max-width: 17.6rem;
+        border-left: 1px solid #999;
+        border-right: 1px solid #999;
+        position: relative;
+        word-wrap: break-word; /* All browsers since IE 5.5+ */
+        overflow-wrap: break-word;
+
+        .fa.fa-check-circle {
+          color: #43A047;
+          font-family: FontAwesome;
+        }
+      }
+      .row-0 .image_container {
+        max-width: 6rem;
+      }
+
+      .row-0 td, .row-19 td {;
+        border: 0;
+      }
+
+      .row-5 td, .row-15 td, .row-18 td, .row-2 td.verticaltext, .row-11 td.verticaltext, .row-16 td.verticaltext {
+        border-bottom: 1px solid #999;
+      }
+
+      // Hover row on mouseover
+      tr.hovereffect:hover td[class^="col-id-"], tr.hovereffect:hover td.col-2 {
+        background-color: #ccc;
+      }
+
+      td {
+        font-size: 0.875rem;
+      }
+
+      td.row-subtitle {
+        font-size: 1.5rem;
+        background-color: #2a62bc;
+        color: white;
+        border: 1px solid #2a62bc;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
