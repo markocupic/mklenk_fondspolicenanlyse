@@ -1,6 +1,8 @@
 <?php $this->extend('block_searchable'); ?>
 
 <?php $this->block('content'); ?>
+<?php // Das Formular wurde mit dem Formulargenerator erzeugt. ?>
+<?php //include(TL_ROOT . '/system/modules/vorsorgefonds/includes/filter_form.html'); ?>
 
 <div id="vorsorgefondsFilteredList" class="table-responsive">
 
@@ -40,13 +42,14 @@ if(window.jQuery)
 
                 if ($(window).innerWidth() >= 480) {
                     // Instantiate object
-                    objVorsorgefonds = new VorsorgefondsJS('#vorsorgefondsFilteredList', '#vorsorgefondsFilteredListForm', '#chart');
+                    objVorsorgefonds = new VorsorgefondsJS('#vorsorgefondsFilteredList', '#vorsorgefondsFilteredListForm', '#chart',{});
 
                     // Set chart data
                     objVorsorgefonds.setChartX([<?= $this->chartX ?>]);
                     objVorsorgefonds.setChartY([<?= $this->chartY ?>]);
                     objVorsorgefonds.setChartBorder([<?= $this->chartBorder ?>]);
                     objVorsorgefonds.setChartBg([<?= $this->chartBg ?>]);
+
                     // Generate chart
                     window.setTimeout(function () {
                         objVorsorgefonds.generateChart();

@@ -1,8 +1,9 @@
+'use strict';
+
 /**
  * vorsorgefonds
  * Created by Marko Cupic on 03.03.2017.
  */
-
 
 // Constructor
 function VorsorgefondsJS(tableContainer, filterForm, chartContainer, options) {
@@ -11,6 +12,11 @@ function VorsorgefondsJS(tableContainer, filterForm, chartContainer, options) {
     this.$chartContainer = $(chartContainer);
     var defaults = {
         loadingHtml: '<div class="loadingHtml">Lade...</div>',
+        chartContainer: {
+            height: function height(items) {
+                return 20 * items;
+            }
+        },
         chart: {
             data: {
                 datasets: {
@@ -24,13 +30,17 @@ function VorsorgefondsJS(tableContainer, filterForm, chartContainer, options) {
                             labelString: 'Effektivkostenquote in %'
                         }
                     }
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function label(tooltipItems, data) {
+                            return ' ' + tooltipItems.xLabel + ' %';
+                        }
+                    }
                 }
-
             }
-
         }
     };
-
 
     // Merge defaults with user settings
     this.options = $.extend({}, defaults, options);
@@ -52,21 +62,21 @@ VorsorgefondsJS.prototype = {
      * setChartX
      * @param arrChartX
      */
-    setChartX: function (arrChartX) {
+    setChartX: function setChartX(arrChartX) {
         this.chartX = arrChartX;
     },
     /**
      * setChartY
      * @param arrChartY
      */
-    setChartY: function (arrChartY) {
+    setChartY: function setChartY(arrChartY) {
         this.chartY = arrChartY;
     },
     /**
      * setChartBorder
      * @param arrChartBorder
      */
-    setChartBorder: function (arrChartBorder) {
+    setChartBorder: function setChartBorder(arrChartBorder) {
         this.chartBorder = arrChartBorder;
     },
 
@@ -74,21 +84,21 @@ VorsorgefondsJS.prototype = {
      * setChartBg
      * @param arrChartBg
      */
-    setChartBg: function (arrChartBg) {
+    setChartBg: function setChartBg(arrChartBg) {
         this.chartBg = arrChartBg;
     },
 
     /**
      * generate chart
      */
-    generateChart: function () {
+    generateChart: function generateChart() {
         var self = this;
         if (self.$chartContainer.length) {
             self.$chartContainer.html('');
             self.destroyChart();
             if (self.chartX.length) {
                 // Set height
-                self.$chartContainer.prop('height', 20 * self.chartX.length);
+                self.$chartContainer.prop('height', self.options.chartContainer.height(self.chartX.length));
 
                 self.chart = new Chart(self.$chartContainer, {
                     type: 'horizontalBar',
@@ -123,8 +133,8 @@ VorsorgefondsJS.prototype = {
                             enabled: true,
                             mode: 'single',
                             callbacks: {
-                                label: function (tooltipItems, data) {
-                                    return ' ' + tooltipItems.xLabel + ' %';
+                                label: function label(tooltipItems, data) {
+                                    return self.options.chart.options.tooltips.callbacks.label(tooltipItems, data);
                                 }
                             }
                         },
@@ -138,7 +148,7 @@ VorsorgefondsJS.prototype = {
     /**
      * destroyChart
      */
-    destroyChart: function () {
+    destroyChart: function destroyChart() {
         if (this.chart !== null) {
             this.chart.destroy();
         }
@@ -147,7 +157,7 @@ VorsorgefondsJS.prototype = {
     /**
      * loadData from server
      */
-    loadData: function () {
+    loadData: function loadData() {
         var self = this;
         self.$tableContainer.html(this.options.loadingHtml);
         var params = self.$filterForm.serialize();
@@ -159,8 +169,6 @@ VorsorgefondsJS.prototype = {
             window.setTimeout(function () {
                 self.generateChart();
             }, 1200);
-
         });
     }
 };
-
