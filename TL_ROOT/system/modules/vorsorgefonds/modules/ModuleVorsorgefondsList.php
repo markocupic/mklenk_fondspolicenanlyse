@@ -128,7 +128,7 @@ class ModuleVorsorgefondsList extends \Module
         $fields = array('versicherer', 'tarif', 'tarifbezeichnung');
         $fields[] = ($kosten == 'ohne_fondskosten') ? 'kostenOhneFonds' : 'kostenMitFonds';
         $fields[] = ($kosten == 'ohne_fondskosten') ? 'ablaufleistungOhneFonds' : 'ablaufleistungMitFonds';
-        $fields[] = 'garantierterRentenfaktor';
+        //$fields[] = 'garantierterRentenfaktor';
         $fields[] = 'link';
         $this->Template->fields = $fields;
 
@@ -143,6 +143,10 @@ class ModuleVorsorgefondsList extends \Module
         $this->Template->setValue = (function($key, $row){
             $value = $row[$key];
             switch ($key) {
+                case 'kostenOhneFonds':
+                case 'kostenMitFonds':
+                    $value = $value . ' %';
+                    break;
                 case 'link':
                     $value = ($value != '') ? '<a href="' . $value . '" target="_blank" title="zum Anbieter">Link</a>' : '';
                     break;
@@ -165,6 +169,10 @@ class ModuleVorsorgefondsList extends \Module
 
     }
 
+    /**
+     * @param $num
+     * @return array
+     */
     public function getColor($num) {
         $hash = md5('color' . $num); // modify 'color' to get a different palette
         return array(
@@ -174,10 +182,7 @@ class ModuleVorsorgefondsList extends \Module
         );
     }
 
-    public function setValue($key, $value)
-    {
-        return $value;
-    }
+
 
 }
 

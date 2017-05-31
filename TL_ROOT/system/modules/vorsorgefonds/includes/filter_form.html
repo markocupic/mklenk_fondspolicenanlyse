@@ -2,76 +2,127 @@
     <form action="vorsorgefonds-liste.html" id="vorsorgefondsFilteredListForm" method="post" enctype="application/x-www-form-urlencoded">
         <div class="formbody">
             <input type="hidden" name="FORM_SUBMIT" value="auto_vorsorgefondsFilteredListForm">
-            <!--<input type="hidden" name="REQUEST_TOKEN" value="1730faa590fc7f31993000ee261b08d5">-->
+            <input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">
 
             <div class="row">
+
                 <div class="widget widget-select col-xs-6 col-sm-6 col-md-3 col-lg-3 select mandatory">
                     <label for="ctrl_80" class="select mandatory">
                         <span class="invisible">Pflichtfeld </span>Tarif<span class="mandatory">*</span>
                     </label>
+
+
                     <select name="tarif" id="ctrl_80" class="select mandatory" required="">
+
                         <option value="einzel" selected="">einzel</option>
+
+
                         <option value="honorar">honorar</option>
+
                     </select>
+
                 </div>
+
 
                 <div class="widget widget-select col-xs-6 col-sm-6 col-md-3 col-lg-3 select mandatory">
                     <label for="ctrl_81" class="select mandatory">
                         <span class="invisible">Pflichtfeld </span>Kosten<span class="mandatory">*</span>
                     </label>
-                    <select name="kosten" id="ctrl_81" class="select mandatory" required="">
-                        <option value="ohne_fondskosten" selected="">ohne Fondskosten</option>
-                        <option value="mit_fondskosten">mit Fondskosten</option>
-                    </select>
-                </div>
-            </div>
 
+
+                    <select name="kosten" id="ctrl_81" class="select mandatory" required="">
+
+                        <option value="ohne_fondskosten" selected="">ohne Fondskosten</option>
+
+
+                        <option value="mit_fondskosten">mit Fondskosten</option>
+
+                    </select>
+
+                </div>
+
+            </div>
             <div class="row">
+
                 <div class="widget widget-select col-xs-6 col-sm-6 col-md-3 col-lg-3 select mandatory">
                     <label for="ctrl_82" class="select mandatory">
                         <span class="invisible">Pflichtfeld </span>Laufzeit<span class="mandatory">*</span>
                     </label>
+
+
                     <select name="laufzeit" id="ctrl_82" class="select mandatory" required="">
+
                         <option value="12" selected="">12 Jahre</option>
+
+
+                        <option value="20">20 Jahre</option>
+
+
+                        <option value="30">30 Jahre</option>
+
+
+                        <option value="40">40 Jahre</option>
+
                     </select>
+
                 </div>
+
 
                 <div class="widget widget-select col-xs-6 col-sm-6 col-md-3 col-lg-3 select mandatory">
                     <label for="ctrl_83" class="select mandatory">
                         <span class="invisible">Pflichtfeld </span>Sparrate<span class="mandatory">*</span>
                     </label>
+
+
                     <select name="sparrate" id="ctrl_83" class="select mandatory" required="">
+
                         <option value="100" selected="">100 €</option>
+
+
+                        <option value="500">500 €</option>
+
                     </select>
+
                 </div>
 
 
                 <div class="widget widget-checkbox col-xs-6 col-sm-6 col-md-3 col-lg-3">
+
                     <fieldset id="ctrl_84" class="checkbox_container">
                         <div class="checkbox">
                             <legend>
                                 ETF
                             </legend>
+
+
                             <input type="hidden" name="etf" value="">
+
                             <label id="lbl_84_0" for="opt_84_0">
                                 <input type="checkbox" name="etf" id="opt_84_0" value="ja">Nur mit freier ETF-Auswahl </label>
                         </div>
                     </fieldset>
+
                 </div>
 
 
                 <div class="widget widget-checkbox col-xs-6 col-sm-6 col-md-3 col-lg-3">
+
                     <fieldset id="ctrl_85" class="checkbox_container">
                         <div class="checkbox">
                             <legend>
                                 Dimensional
                             </legend>
+
+
                             <input type="hidden" name="dimensional" value="">
+
                             <label id="lbl_85_0" for="opt_85_0">
                                 <input type="checkbox" name="dimensional" id="opt_85_0" value="ja">Nur mit freier Dimensional Fonds Auswahl </label>
                         </div>
                     </fieldset>
+
                 </div>
+
             </div>
         </div>
     </form>
