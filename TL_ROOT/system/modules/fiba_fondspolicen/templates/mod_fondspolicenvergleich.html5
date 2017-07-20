@@ -1,0 +1,273 @@
+<?php if(!$this->isAjax && !$this->printPdf): ?>
+<div class="<?php echo $this->class ?> block"<?php echo $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?>>
+
+    <?php if ($this->headline): ?>
+    <<?php echo $this->hl ?>><?php echo $this->headline ?></<?php echo $this->hl ?>>
+    <?php endif ?>
+    <!--<h3>Vergleichen Sie die Fondspolicen untereinander</h3>-->
+    <div class="row form-container">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="fondspolicenselect1">1. Anbieter:</label>
+                <select class="form-control" id="fondspolicenselect1">
+                    <option value="0">leer</option>
+                    <?php foreach($this->items as $item): ?>
+                    <option value="<?= $item['id'] ?>"><?= $item['title'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="fondspolicenselect2">2. Anbieter:</label>
+                <select class="form-control" id="fondspolicenselect2">
+                    <option value="0">leer</option>
+                    <?php foreach($this->items as $item): ?>
+                    <option value="<?= $item['id'] ?>"><?= $item['title'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="fondspolicenselect3">3. Anbieter:</label>
+                <select class="form-control" id="fondspolicenselect3">
+                    <option value="0">leer</option>
+                    <?php foreach($this->items as $item): ?>
+                    <option value="<?= $item['id'] ?>"><?= $item['title'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </div>
+    <button id="printPdf" class="btn btn-default"><i class="fa fa-print"></i> Vergleich drucken</button>
+
+    <div class="table-container">
+
+    </div>
+
+
+
+    <script>
+    /**
+     * Load data from xhr
+     */
+    function getDataFromXHR(printPdf) {
+
+        // Get ids from select menue
+        var select1 = $('#fondspolicenselect1').val();
+        var select2 = $('#fondspolicenselect2').val();
+        var select3 = $('#fondspolicenselect3').val();
+        if (select1 + select2 + select3 < 1) {
+            $('.table-container').fadeOut();
+            // Hide PDF Button
+            $('#printPdf').hide();
+            return;
+        }
+        // Show PDF Button
+        $('#printPdf').show();
+
+
+        var compareIds = [];
+        if (select1 > 1) {
+            compareIds.push(select1);
+        }
+        if (select2 > 1) {
+            compareIds.push(select2);
+        }
+        if (select3 > 1) {
+            compareIds.push(select3);
+        }
+
+        // transform array to string
+        var ids = compareIds.toString();
+
+
+        var url = window.location.href + '?printPdf=' + printPdf + '&ids=' + ids;
+
+        if(printPdf == true)
+        {
+            window.location.href = url;
+        }
+
+        // Ajax request
+        var xhr = $.getJSON(url, function () {
+            //console.log("success");
+        })
+                .done(function (data) {
+                    if (data.table != '') {
+                        $('.table-container').hide();
+                        $('.table-container').html(data.table);
+                        $('.table-container').fadeIn();
+                    }
+                })
+                .fail(function () {
+                    console.log("Failed to load data from server.");
+                })
+                .always(function () {
+                    //
+                });
+    }
+
+
+    $(document).ready(function () {
+        $('#fondspolicenselect1, #fondspolicenselect2, #fondspolicenselect3').change(function () {
+
+            // Hide already selected options in sibling selects
+            $(this).closest('.form-container').find('option').show();
+            $('#fondspolicenselect1, #fondspolicenselect2, #fondspolicenselect3').each(function () {
+                var id = $(this).val();
+                if (id > 0) {
+                    var selects = $(this).closest('[class^="col-"]').siblings();
+                    selects.each(function () {
+                        $(this).find('option[value="' + id + '"]').hide();
+                    });
+                }
+            });
+
+            // Load table from xhr
+            getDataFromXHR(false);
+        });
+
+        // deactivated
+        $('#printPdf').click(function () {
+            getDataFromXHR(true);
+        });
+    });
+    </script>
+</div>
+<?php endif; ?>
+
+
+
+<?php if($this->isAjax || $this->printPdf): ?>
+<table id="Vergleichstabelle" class="table">
+<tbody>
+<tr class="row-0">
+    <td class="col-1"></td>
+    <td class="col-2"></td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> aligncenter"><?php if($item['iconPath'] != ''): ?>
+        <img src="<?= $item['iconPath'] ?>" class="headerlogo" width="100" alt="<?= $item['title'] ?>"/>
+        <?php endif; ?></td>
+    <?php endforeach; ?>
+
+</tr>
+<tr class="row-1">
+    <td class="row-subtitle" colspan="<?= $this->countItems + 2 ?>">Kostenanalyse</td>
+</tr>
+<tr class="row-2 hovereffect">
+    <td rowspan="4" class="col-1 verticaltext"><img src="system/modules/fiba_fondspolicen/assets/100.png"/></td>
+    <td class="col-2 content odd alignright strong"><strong>Laufzeit</strong><br>Versicherungsmantel<br>Versicherungsmantel inkl. Fonds</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> odd aligncenter strong content"><strong><?= $item['laufzeitA1'] ?> Jahre</strong><br><?= $item['versicherungsmantelA1'] ?><br><?= $item['versicherungsmantelInklA1'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-3 hovereffect">
+    <td class="col-2 even content alignright strong"><strong>Laufzeit</strong><br>Versicherungsmantel<br>Versicherungsmantel inkl. Fonds</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> even aligncenter strong content"><strong><?= $item['laufzeitA2'] ?> Jahre</strong><br><?= $item['versicherungsmantelA2'] ?><br><?= $item['versicherungsmantelInklA2'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-4 hovereffect">
+    <td class="col-2 odd content alignright strong"><strong>Laufzeit</strong><br>Versicherungsmantel<br>Versicherungsmantel inkl. Fonds</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> odd aligncenter strong content"><strong><?= $item['laufzeitA3'] ?> Jahre</strong><br><?= $item['versicherungsmantelA3'] ?><br><?= $item['versicherungsmantelInklA3'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-5 hovereffect">
+    <td class="col-2 even content alignright strong"><strong>Laufzeit</strong><br>Versicherungsmantel<br>Versicherungsmantel inkl. Fonds</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> even aligncenter strong content"><strong><?= $item['laufzeitA4'] ?> Jahre</strong><br><?= $item['versicherungsmantelA4'] ?><br><?= $item['versicherungsmantelInklA4'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-6 hovereffect">
+    <td rowspan="4" colspan="1" class="col-1 verticaltext"><img src="system/modules/fiba_fondspolicen/assets/500.png"/></td>
+    <td class="col-2 content odd alignright strong"><strong>Laufzeit</strong><br>Versicherungsmantel<br>Versicherungsmantel inkl. Fonds</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> odd aligncenter strong content"><strong><?= $item['laufzeitB1'] ?> Jahre</strong><br><?= $item['versicherungsmantelB1'] ?><br><?= $item['versicherungsmantelInklB1'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-7 hovereffect">
+    <td class="col-2 even content alignright strong"><strong>Laufzeit</strong><br>Versicherungsmantel<br>Versicherungsmantel inkl. Fonds</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> even aligncenter strong content"><strong><?= $item['laufzeitB2'] ?> Jahre</strong><br><?= $item['versicherungsmantelB2'] ?><br><?= $item['versicherungsmantelInklB2'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-8 hovereffect">
+    <td class="col-2 odd content alignright strong"><strong>Laufzeit</strong><br>Versicherungsmantel<br>Versicherungsmantel inkl. Fonds</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> odd aligncenter strong content"><strong><?= $item['laufzeitB3'] ?> Jahre</strong><br><?= $item['versicherungsmantelB3'] ?><br><?= $item['versicherungsmantelInklB3'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-9 hovereffect">
+    <td class="col-2 even content alignright strong"><strong>Laufzeit</strong><br>Versicherungsmantel<br>Versicherungsmantel inkl. Fonds</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> even aligncenter strong content"><strong><?= $item['laufzeitB4'] ?> Jahre</strong><br><?= $item['versicherungsmantelB4'] ?><br><?= $item['versicherungsmantelInklB4'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<!--row-leistung-->
+<tr class="row-10">
+    <td class="row-subtitle" colspan="<?= $this->countItems + 2 ?>">Leistung</td>
+</tr>
+<tr class="row-11 hovereffect">
+    <td rowspan="5" colspan="1" class="col-1 verticaltext"><img src="system/modules/fiba_fondspolicen/assets/fonds.png"/></td>
+    <td class="col-2 content odd alignright">Fondsuniversum</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> odd aligncenter content"><a href="<?= $item['fondsuniversumUrl'] ?>" target="_blank">Link</a></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-12 hovereffect">
+    <td class="col-2 even content alignright">ETF</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> even content aligncenter"><?php if($item['etf']): ?>Ja<?php else: ?>Nein<?php endif; ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-13 hovereffect">
+    <td class="col-2 odd content alignright">Dimensional Fonds</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> odd content aligncenter"><?php if($item['dimensionalFonds']): ?>Ja<?php else: ?>Nein<?php endif; ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-14 hovereffect">
+    <td class="col-2 even content alignright eigene-portfolios">Eigene Portfolios</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> even content alignleft"><?= $item['eigenePortfolios'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-15 hovereffect">
+    <td class="col-2 odd content alignright">Kostenfreies Rebalancing</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> odd content aligncenter"><?php if($item['kostenfreiesRebalancing']): ?>Ja<?php else: ?>Nein<?php endif; ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-16 hovereffect">
+    <td rowspan="3" colspan="1" class="col-1 verticaltext"><img src="system/modules/fiba_fondspolicen/assets/besonderes.png"/></td>
+    <td class="col-2 even content alignright"><strong>Garantierter Rentenfaktor</strong></td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> even content aligncenter"><?= $item['garantierterRentenfaktor'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-17 hovereffect">
+    <td class="col-2 odd content alignright"> Kick-Backs</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> odd content alignleft"><?= $item['kickBacks'] ?></td>
+    <?php endforeach; ?>
+</tr>
+
+<tr class="row-18 hovereffect">
+    <td class="col-2 even content alignright highlights"><strong>Wissenswertes</strong></td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> even content alignleft"><?= $item['highlights'] ?></td>
+    <?php endforeach; ?>
+</tr>
+<tr class="row-19">
+    <td class="col-1"></td>
+    <td class="col-2 alignright">Stand:</td>
+    <?php foreach($this->items as $item): ?>
+    <td class="col-id-<?= $item['id'] ?> aligncenter"><?= \Date::parse('d.m.Y', $item['datum']) ?></td>
+    <?php endforeach; ?>
+</tr>
+</tbody>
+</table>
+<?php endif; ?>

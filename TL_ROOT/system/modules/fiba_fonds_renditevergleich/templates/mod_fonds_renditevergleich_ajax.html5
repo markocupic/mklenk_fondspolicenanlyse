@@ -1,0 +1,29 @@
+<table class="table table-striped">
+    <tr>
+        <?php foreach($this->fields as $field): ?>
+        <th class="field-<?= $field ?>"><?= $GLOBALS['TL_LANG']['tl_fonds_renditevergleich'][$field][0] ?></th>
+        <?php endforeach; ?>
+    </tr>
+    <?php foreach ($this->rows as $row): ?>
+    <tr>
+        <?php foreach($this->fields as $field): ?>
+        <td class="field-<?= $field ?>"><?= $this->setValue($field, $row) ?></td>
+        <?php endforeach; ?>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<?php if(count($this->rows) < 1): ?>
+<div class="no-items-found alert alert-warning">
+    <p><?= $this->noItemsFound ?></p>
+</div>
+<?php endif; ?>
+
+<script>
+if(typeof FondsRenditevergleichTable != 'undefined') {
+    objVorsorgefonds.setChartX([<?= $this->chartX ?>]);
+    objVorsorgefonds.setChartY([<?= $this->chartY ?>]);
+    objVorsorgefonds.setChartBorder([<?= $this->chartBorder ?>]);
+    objVorsorgefonds.setChartBg([<?= $this->chartBg ?>]);
+}
+</script>

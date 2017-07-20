@@ -1,0 +1,169 @@
+<?php $this->extend('block_searchable'); ?>
+
+<?php $this->block('content'); ?>
+
+
+
+<!-- get chart.js from cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+
+<!-- Include the qtip tooltip plugin -->
+<script type="text/javascript" src="/system/modules/fiba_fonds_renditevergleich/assets/qtip2/jquery.qtip.min.js"></script>
+<?php $GLOBALS['TL_CSS'][] = "system/modules/fiba_fonds_renditevergleich/assets/qtip2/jquery.qtip.min.css"; ?>
+
+
+
+<!-- Filterformular einfuegen -->
+<div class="ce_form tableless block">
+    <form action="vorsorgefonds-liste.html" id="fondsRenditevergleichFilterForm" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="formbody">
+            <input type="hidden" name="FORM_SUBMIT" value="fondsRenditevergleichFilterForm">
+            <input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">
+
+
+
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
+                    <div class="row">
+                        <div class="widget widget-checkbox col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                            <div class="checkbox">
+                                <input type="hidden" name="etf_aktienfonds" value="">
+                                <label id="lbl_84_0" for="opt_84_0">
+                                    <input type="checkbox" name="etf_aktienfonds" id="opt_84_0" value="1" checked> ETF Aktienfonds </label>
+                            </div>
+                        </div>
+                        <div class="widget widget-checkbox col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="checkbox">
+                                <input type="hidden" name="dimensional_aktienfonds" value="">
+                                <label id="lbl_85_0" for="opt_85_0">
+                                    <input type="checkbox" name="dimensional_aktienfonds" id="opt_85_0" value="1" checked> Dimensional Aktienfonds </label>
+                            </div>
+                        </div>
+
+                        <div class="widget widget-checkbox col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="checkbox">
+                                <input type="hidden" name="etf_vorsorgefonds" value="">
+                                <label id="lbl_86_0" for="opt_86_0">
+                                    <input type="checkbox" name="etf_vorsorgefonds" id="opt_86_0" value="1" checked> ETF Vorsorgefonds </label>
+                            </div>
+                        </div>
+                        <div class="widget widget-checkbox col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <div class="checkbox">
+                                <input type="hidden" name="dimensional_vorsorgefonds" value="">
+                                <label id="lbl_87_0" for="opt_87_0">
+                                    <input type="checkbox" name="dimensional_vorsorgefonds" id="opt_87_0" value="1" checked> Dimensional Vorsorgefonds </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-3">
+                    <div class="row">
+                        <div class="widget widget-select select mandatory col-md-6 col-lg-12">
+                            <label for="ctrl_88" class="select mandatory">
+                                <span class="invisible">Pflichtfeld </span>Rendite<span class="mandatory">*</span>
+                            </label>
+                            <select name="rendite" id="ctrl_88" class="select mandatory" required="">
+                                <option value="rendite3Jahre" selected>3 Jahre p.a.</option>
+                                <option value="rendite5Jahre">5 Jahre p.a.</option>
+                                <option value="rendite10Jahre">10 Jahre p.a.</option>
+                            </select>
+                        </div>
+                        <div class="widget widget-select select mandatory col-md-6 col-lg-12">
+                            <label for="ctrl_89" class="select mandatory">
+                                <span class="invisible">Pflichtfeld </span>Anbieter<span class="mandatory">*</span>
+                            </label>
+                            <select name="anbieter" id="ctrl_89" class="select mandatory" required="">
+                                <option value="" selected="">---</option>
+                                <?php foreach($this->arrAnbieter as $anbieter): ?>
+                                <option value="<?= urlencode($anbieter) ?>"><?= $anbieter ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+<div id="fondsRenditevergleichTable" class="table-responsive">
+
+    <table class="table table-striped">
+        <tr>
+            <?php foreach($this->fields as $field): ?>
+            <th class="field-<?= $field ?>"><?= $GLOBALS['TL_LANG']['tl_fonds_renditevergleich'][$field][0] ?></th>
+            <?php endforeach; ?>
+        </tr>
+    <?php foreach ($this->rows as $row): ?>
+        <tr>
+            <?php foreach($this->fields as $field): ?>
+            <td class="field-<?= $field ?>"><?= $this->setValue($field, $row) ?></td>
+            <?php endforeach; ?>
+        </tr>
+    <?php endforeach; ?>
+    </table>
+
+    <?php if(count($this->rows) < 1): ?>
+    <div class="no-items-found alert alert-warning">
+        <p><?= $this->noItemsFound ?></p>
+    </div>
+    <?php endif; ?>
+
+</div>
+<canvas id="chart"></canvas>
+
+
+
+<script>
+if(window.jQuery)
+{
+    (function($){
+        $(document).ready(function () {
+
+            $('[data-qtip2-tooltip!=""]').qtip({ // Grab all elements with a non-blank data-tooltip attr.
+                content: {
+                    attr: 'data-qtip2-tooltip' // Tell qTip2 to look inside this attr for its content
+                }
+            });
+
+
+            if ($('#fondsRenditevergleichTable').length && $('#fondsRenditevergleichFilterForm').length) {
+
+                if ($(window).innerWidth() >= 480) {
+                    // Instantiate object
+                    objVorsorgefonds = new FondsRenditevergleichTable('#fondsRenditevergleichTable', '#fondsRenditevergleichFilterForm', '#chart',{});
+
+                    // Set chart data
+                    objVorsorgefonds.setChartX([<?= $this->chartX ?>]);
+                    objVorsorgefonds.setChartY([<?= $this->chartY ?>]);
+                    objVorsorgefonds.setChartBorder([<?= $this->chartBorder ?>]);
+                    objVorsorgefonds.setChartBg([<?= $this->chartBg ?>]);
+
+                    // Generate chart
+                    window.setTimeout(function () {
+                        //objVorsorgefonds.generateChart();
+                    }, 1500);
+
+                    // Redraw chart if form input has changed
+                    $('#fondsRenditevergleichFilterForm').change(function () {
+                        // Destroy old chart
+                        //objVorsorgefonds.destroyChart();
+                        // Load Data from server und update table
+                        objVorsorgefonds.loadData();
+                    });
+                }
+            }
+        });
+    })(jQuery);
+}
+</script>
+<?php $this->endblock(); ?>
