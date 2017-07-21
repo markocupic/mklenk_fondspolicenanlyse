@@ -40,5 +40,9 @@
     text-align:center;
 }
 
+#fondsRenditevergleichTable tr:hover > td {
+    background-color: #8dd9ff;
+}
+
 
 
