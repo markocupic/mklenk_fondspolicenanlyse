@@ -1,0 +1,38 @@
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php $this->block('content'); ?>
+
+<div class="greeting">
+    <p>Hallo <span class="firstname"><?= $this->User->firstname ?></span>, deine Empfehlungsgeber findest du in nachfolgender Liste:
+</div>
+
+<?php if(!$this->countResults): ?>
+<div class="noResults">
+    <p>Es sind keine Empfehlungsgeber vorhanden.</p>
+</div>
+<?php else: ?>
+<div class="ce_table empfehlungsgeberListe">
+    <table class="table sortable">
+        <thead>
+        <tr>
+            <th class="head_0 header col_first">Name</th>
+            <th class="head_1 header col_first">E-Mail</th>
+            <th class="head_2 header">Level</th>
+            <th class="head_3 header col_last">Ausbezahlte Prämie</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($this->empfehlungsgeber as $empfehlungsgeber): ?>
+        <tr>
+            <td class="col_0 col_first"><?= $empfehlungsgeber['firstname'] ?> <?= $empfehlungsgeber['lastname'] ?></td>
+            <td class="col_1"><?= $empfehlungsgeber['email'] ?></td>
+            <td class="col_2">Level <?= $empfehlungsgeber['empfehlungsgeberLevel'] ?></td>
+            <td class="col_3 col_last">Ausbezahlte Prämie: <?= $empfehlungsgeber['empfehlungsgeberAusbezahltePraemie'] ?> &euro;</td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php endif; ?>
+
+<?php $this->endblock(); ?>

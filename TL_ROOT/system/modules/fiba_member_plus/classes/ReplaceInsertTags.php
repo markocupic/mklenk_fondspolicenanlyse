@@ -53,26 +53,58 @@ class ReplaceInsertTags extends \Controller
                 {
                     switch ($arrTag[1])
                     {
-                        case 'userFiba::empfehlungsgeberLevel':
+                        case 'empfehlungsgeberLevel':
                             return $this->User->empfehlungsgeberLevel;
                             break;
-                        case 'userFiba::empfehlungsgeberAusbezahltePraemie':
-                            return $this->User->empfehlungsgeberAusbezahltePraemie;
+                        case 'empfehlungsgeberAusbezahltePraemie':
+                            return (!$this->User->empfehlungsgeberAusbezahltePraemie > 0) ? '0' : $this->User->empfehlungsgeberAusbezahltePraemie;
                             break;
-                        case 'userFiba::empfehlungsgeberEmpohleneKunden':
+                        case 'empfehlungsgeberEmpohleneKunden':
                             return $this->User->empfehlungsgeberEmpohleneKunden;
                             break;
-                        case 'userFiba::betreutDurchVermittlerName':
-                            return $this->User->betreutDurchVermittlerName;
+                        case 'betreutDurchVermittlerName':
+                            if($this->User->fibaRole == 'isEmpfehlungsgeber' && $this->User->betreutDurchVermittlerId > 0)
+                            {
+                                $objVermittler = \MemberModel::findByPk($this->User->betreutDurchVermittlerId);
+                                if($objVermittler !== null)
+                                {
+                                    return $objVermittler->firstname . ' ' . $objVermittler->lastname;
+                                }
+                            }
+                            return 'Keinen betreuenden Vermittler gefunden.';
                             break;
-                        case 'userFiba::betreutDurchVermittlerPhone':
-                            return $this->User->betreutDurchVermittlerPhone;
+                        case 'betreutDurchVermittlerPhone':
+                            if($this->User->fibaRole == 'isEmpfehlungsgeber' && $this->User->betreutDurchVermittlerId > 0)
+                            {
+                                $objVermittler = \MemberModel::findByPk($this->User->betreutDurchVermittlerId);
+                                if($objVermittler !== null)
+                                {
+                                    return $objVermittler->phone;
+                                }
+                            }
+                            return 'Keine Nummer gefunden.';
                             break;
-                        case 'userFiba::betreutDurchVermittlerFax':
-                            return $this->User->betreutDurchVermittlerFax;
+                        case 'betreutDurchVermittlerFax':
+                            if($this->User->fibaRole == 'isEmpfehlungsgeber' && $this->User->betreutDurchVermittlerId > 0)
+                            {
+                                $objVermittler = \MemberModel::findByPk($this->User->betreutDurchVermittlerId);
+                                if($objVermittler !== null)
+                                {
+                                    return $objVermittler->fax;
+                                }
+                            }
+                            return 'Keine Faxnummer gefunden.';
                             break;
-                        case 'userFiba::betreutDurchVermittlerEmail':
-                            return $this->User->betreutDurchVermittlerEmail;
+                        case 'betreutDurchVermittlerEmail':
+                            if($this->User->fibaRole == 'isEmpfehlungsgeber' && $this->User->betreutDurchVermittlerId > 0)
+                            {
+                                $objVermittler = \MemberModel::findByPk($this->User->betreutDurchVermittlerId);
+                                if($objVermittler !== null)
+                                {
+                                    return $objVermittler->email;
+                                }
+                            }
+                            return 'Keine E-Mail-Adresse gefunden.';
                             break;
                         default:
                             if (!is_array($this->User->{$arrTag[1]}))
