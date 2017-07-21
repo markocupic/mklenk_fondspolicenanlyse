@@ -31,4 +31,14 @@
     font-style: italic;
 }
 
+#fondsRenditevergleichTable .field-rendite3Jahre,
+#fondsRenditevergleichTable .field-rendite5Jahre,
+#fondsRenditevergleichTable .field-rendite10Jahre,
+#fondsRenditevergleichTable .field-volantilitaet,
+#fondsRenditevergleichTable .field-laufendeKosten,
+#fondsRenditevergleichTable .field-anbieter{
+    text-align:center;
+}
+
+
 

@@ -10,4 +10,5 @@
 $GLOBALS['TL_LANG']['FMD']['fonds_renditevergleich'] = array('Fonds-Renditen-Vergleich mit Tabelle und Chart');
 
 // Backend Modules
+$GLOBALS['TL_LANG']['MOD']['fiba'] = array('FIBA-Tools', 'FIBA Datenerfassungstools');
 $GLOBALS['TL_LANG']['MOD']['fiba_fonds_renditevergleich'] = array('Fonds-Renditen-Vergleich');

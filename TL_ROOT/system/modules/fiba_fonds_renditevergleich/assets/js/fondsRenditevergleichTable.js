@@ -27,7 +27,7 @@ function FondsRenditevergleichTable(tableContainer, filterForm, chartContainer, 
                 scales: {
                     xAxes: {
                         scaleLabel: {
-                            labelString: 'Rendite p.a.'
+                            labelString: 'Rendite p.a. %'
                         }
                     }
                 },

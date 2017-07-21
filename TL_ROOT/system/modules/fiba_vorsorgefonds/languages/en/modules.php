@@ -11,4 +11,5 @@ $GLOBALS['TL_LANG']['FMD']['vorsorgefonds'] = array('Vorsorgefonds');
 $GLOBALS['TL_LANG']['FMD']['vorsorgefondslist'] = array('Vorsorgefonds Liste mit Filter');
 
 // Backend Modules
+$GLOBALS['TL_LANG']['MOD']['fiba'] = array('FIBA-Tools', 'FIBA Datenerfassungstools');
 $GLOBALS['TL_LANG']['MOD']['vorsorgefonds'] = array('Vorsorgefonds');

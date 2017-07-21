@@ -189,8 +189,8 @@ $GLOBALS['TL_DCA']['tl_fonds_renditevergleich'] = array
             'sorting'                 => true,
             'flag'                    => 1,
             'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>255, 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'eval'                    => array('maxlength'=>5, 'tl_class'=>'clr'),
+            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
         ),
         'rendite5Jahre' => array
         (
@@ -200,8 +200,8 @@ $GLOBALS['TL_DCA']['tl_fonds_renditevergleich'] = array
             'sorting'                 => true,
             'flag'                    => 1,
             'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>255, 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'eval'                    => array('maxlength'=>5, 'tl_class'=>'clr'),
+            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
         ),
         'rendite10Jahre' => array
         (
@@ -211,8 +211,8 @@ $GLOBALS['TL_DCA']['tl_fonds_renditevergleich'] = array
             'sorting'                 => true,
             'flag'                    => 1,
             'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>255, 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'eval'                    => array('maxlength'=>5, 'tl_class'=>'clr'),
+            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
         ),
         'volantilitaet' => array
         (
@@ -223,9 +223,8 @@ $GLOBALS['TL_DCA']['tl_fonds_renditevergleich'] = array
             'filter'                  => true,
             'flag'                    => 1,
             'inputType'               => 'text',
-            //'options'                 => array('ja','nein'),
-            'eval'                    => array('includeBlankOption'=>true, 'maxlength'=>255, 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'eval'                    => array('maxlength'=>5, 'tl_class'=>'clr'),
+            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
         ),
         'laufendeKosten' => array
         (
@@ -236,9 +235,8 @@ $GLOBALS['TL_DCA']['tl_fonds_renditevergleich'] = array
             'filter'                  => true,
             'flag'                    => 1,
             'inputType'               => 'text',
-            //'options'                 => array('ja','nein'),
-            'eval'                    => array('includeBlankOption'=>true, 'maxlength'=>255, 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'eval'                    => array('maxlength'=>5, 'tl_class'=>'clr'),
+            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
         ),
         'factsheet' => array
         (

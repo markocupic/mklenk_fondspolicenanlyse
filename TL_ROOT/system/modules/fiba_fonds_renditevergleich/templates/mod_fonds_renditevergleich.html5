@@ -15,7 +15,7 @@
 
 <!-- Filterformular einfuegen -->
 <div class="ce_form tableless block">
-    <form action="vorsorgefonds-liste.html" id="fondsRenditevergleichFilterForm" method="post" enctype="application/x-www-form-urlencoded">
+    <form action="#" id="fondsRenditevergleichFilterForm" method="post" enctype="application/x-www-form-urlencoded">
         <div class="formbody">
             <input type="hidden" name="FORM_SUBMIT" value="fondsRenditevergleichFilterForm">
             <input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">
@@ -44,16 +44,16 @@
 
                         <div class="widget widget-checkbox col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <div class="checkbox">
-                                <input type="hidden" name="etf_vorsorgefonds" value="">
+                                <input type="hidden" name="etf_rentenfonds" value="">
                                 <label id="lbl_86_0" for="opt_86_0">
-                                    <input type="checkbox" name="etf_vorsorgefonds" id="opt_86_0" value="1" checked> ETF Vorsorgefonds </label>
+                                    <input type="checkbox" name="etf_rentenfonds" id="opt_86_0" value="1" checked> ETF Rentenfonds </label>
                             </div>
                         </div>
                         <div class="widget widget-checkbox col-xs-12 col-sm-6 col-md-6 col-lg-6">
                             <div class="checkbox">
-                                <input type="hidden" name="dimensional_vorsorgefonds" value="">
+                                <input type="hidden" name="dimensional_rentenfonds" value="">
                                 <label id="lbl_87_0" for="opt_87_0">
-                                    <input type="checkbox" name="dimensional_vorsorgefonds" id="opt_87_0" value="1" checked> Dimensional Vorsorgefonds </label>
+                                    <input type="checkbox" name="dimensional_rentenfonds" id="opt_87_0" value="1" checked> Dimensional Rentenfonds </label>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,8 @@
                             <select name="rendite" id="ctrl_88" class="select mandatory" required="">
                                 <option value="rendite3Jahre" selected>3 Jahre p.a.</option>
                                 <option value="rendite5Jahre">5 Jahre p.a.</option>
-                                <option value="rendite10Jahre">10 Jahre p.a.</option>
+                                <!-- for the feature -->
+                                <!--<option value="rendite10Jahre">10 Jahre p.a.</option>-->
                             </select>
                         </div>
                         <div class="widget widget-select select mandatory col-md-6 col-lg-12">
@@ -150,13 +151,13 @@ if(window.jQuery)
 
                     // Generate chart
                     window.setTimeout(function () {
-                        //objVorsorgefonds.generateChart();
-                    }, 1500);
+                        objVorsorgefonds.generateChart();
+                    }, 500);
 
                     // Redraw chart if form input has changed
                     $('#fondsRenditevergleichFilterForm').change(function () {
                         // Destroy old chart
-                        //objVorsorgefonds.destroyChart();
+                        objVorsorgefonds.destroyChart();
                         // Load Data from server und update table
                         objVorsorgefonds.loadData();
                     });

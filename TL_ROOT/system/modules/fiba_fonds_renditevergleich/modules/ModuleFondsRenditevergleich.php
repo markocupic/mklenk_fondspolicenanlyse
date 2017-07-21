@@ -42,7 +42,7 @@ class ModuleFondsRenditevergleich extends \Module
             /** @var \BackendTemplate|object $objTemplate */
             $objTemplate = new \BackendTemplate('be_wildcard');
 
-            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['newslist'][0]) . ' ###';
+            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['fonds_renditevergleich'][0]) . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
@@ -83,7 +83,7 @@ class ModuleFondsRenditevergleich extends \Module
         // Handle the checkboxes in the filter form
         $arrTranslate = array(
             'etf_aktienfonds' => 'ETF Aktienfonds',
-            'etf_vorsorgefonds' => 'ETF Vorsorgefonds',
+            'etf_rentenfonds' => 'ETF Rentenfonds',
             'dimensional_aktienfonds' => 'Dimensional Aktienfonds',
             'dimensional_rentenfonds' => 'Dimensional Rentenfonds'
         );
@@ -124,7 +124,7 @@ class ModuleFondsRenditevergleich extends \Module
         $chartBg = [];
         $chartBorder = [];
 
-        $strQuery = "SELECT * FROM tl_fonds_renditevergleich" . $strWhere;
+        $strQuery = "SELECT * FROM tl_fonds_renditevergleich" . $strWhere . ' ORDER BY ' . $fieldRendite . ' DESC';
         $objDb = $this->Database->prepare($strQuery)->execute();
 
         $i = 0;
@@ -173,11 +173,20 @@ class ModuleFondsRenditevergleich extends \Module
             switch ($key)
             {
                 case 'factsheet':
-                    $value = ($value != '') ? '<a href="' . $value . '" target="_blank" title="zum Anbieter">Link</a>' : '';
+                    $value = ($value != '') ? '<a href="' . $value . '" target="_blank" title="zum Anbieter">Factsheet</a>' : '';
                     break;
                 case 'anbieter':
                     $value = sprintf('<img data-qtip2-tooltip="%s" style="cursor:help" src="system/modules/fiba_fonds_renditevergleich/assets/icons/list-provider.png">', $value);
                     break;
+                case 'laufendeKosten':
+                case 'rendite3Jahre':
+                case 'rendite5Jahre':
+                case 'rendite10Jahre':
+                case 'volantilitaet':
+                    $value = str_replace('.',',', $value);
+                    $value = str_replace('0,00','', $value);
+                    $value = $value != '' ? $value . ' %' : '';
+                break;
             }
             return $value;
         });
