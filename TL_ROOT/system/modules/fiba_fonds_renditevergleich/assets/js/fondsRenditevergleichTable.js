@@ -27,12 +27,13 @@ function FondsRenditevergleichTable(tableContainer, filterForm, chartContainer, 
                 scales: {
                     xAxes: {
                         scaleLabel: {
-                            labelString: 'Rendite p.a. %'
+                            labelString: 'Rendite p.a.'
                         }
                     }
                 },
                 tooltips: {
                     callbacks: {
+                        // unit to the tooltips
                         label: function label(tooltipItems, data) {
                             return ' ' + tooltipItems.xLabel + ' %';
                         }
@@ -117,11 +118,16 @@ FondsRenditevergleichTable.prototype = {
                             yAxes: [{
                                 ticks: {
                                     beginAtZero: true
-                                }
+                                },
+                                display: true
                             }],
                             xAxes: [{
                                 ticks: {
-                                    beginAtZero: true
+                                    beginAtZero: true,
+                                    // add unit to x-axis labels
+                                    callback: function(value, index, values) {
+                                        return value + ' %';
+                                    }
                                 },
                                 scaleLabel: {
                                     display: true,
