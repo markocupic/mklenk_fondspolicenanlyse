@@ -26,3 +26,8 @@ $GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['factsheet'] = array('Factsheet
 
 $GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['name_legend']  = 'Fonds';
 $GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['facts_legend']  = 'Facts';
+
+// Labels
+$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['edit'] = array('Bearbeiten', 'Fonds mit ID %s bearbeiten?');
+$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['delete'] = array('L&ouml;schen', 'Fonds mit ID %s l&ouml;schen?');
+$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['copy'] = array('Kopieren','Fonds mit ID %s kopieren?');

@@ -220,12 +220,8 @@ class ModuleFondsRenditevergleich extends \Module
     protected function getAnbieter()
     {
         $strAnbieter = '';
-        $objDb = $this->Database->execute("SELECT anbieter FROM tl_fonds_renditevergleich");
-        while ($objDb->next())
-        {
-            $strAnbieter .= trim($objDb->anbieter) . ',';
-        }
-        $arrAnbieter = explode(',', $strAnbieter);
+        $objDb = $this->Database->execute("SELECT * FROM tl_fonds_renditevergleich ORDER BY anbieter");
+        $arrAnbieter = $objDb->fetchEach('anbieter');
         $arrAnbieter = array_values($arrAnbieter);
         $arrAnbieter = array_unique($arrAnbieter);
         $arrAnbieter = array_values($arrAnbieter);

@@ -25,11 +25,10 @@ $GLOBALS['TL_DCA']['tl_fonds_renditevergleich'] = array
     // Config
     'config' => array
     (
-        'dataContainer'               => 'Table',
-        'enableVersioning'            => true,
+        'dataContainer' => 'Table',
+        'enableVersioning' => true,
         'onload_callback' => array
-        (
-            //array('tl_fonds_renditevergleich', 'checkPermission')
+        (//array('tl_fonds_renditevergleich', 'checkPermission')
         ),
         'onsubmit_callback' => array
         (
@@ -37,8 +36,7 @@ $GLOBALS['TL_DCA']['tl_fonds_renditevergleich'] = array
             //array('tl_fonds_renditevergleich', 'checkRemoveSession')
         ),
         'ondelete_callback' => array
-        (
-            //array('tl_fonds_renditevergleich', 'removeSession')
+        (//array('tl_fonds_renditevergleich', 'removeSession')
         ),
         'sql' => array
         (
@@ -54,50 +52,50 @@ $GLOBALS['TL_DCA']['tl_fonds_renditevergleich'] = array
     (
         'sorting' => array
         (
-            'mode'                    => 2,
-            'fields'                  => array('anbieter DESC'),
-            'flag'                    => 1,
-            'panelLayout'             => 'filter;sort,search,limit'
+            'mode' => 2,
+            'fields' => array('fondsname DESC'),
+            'flag' => 1,
+            'panelLayout' => 'filter;sort,search,limit'
         ),
         'label' => array
         (
-            'fields'                  => array('anbieter', 'fondsname'),
-            'showColumns'             => true,
+            'fields' => array('fondsname', 'isin', 'anbieter'),
+            'showColumns' => true,
             //'label_callback'          => array('tl_fonds_renditevergleich', 'addIcon')
         ),
         'global_operations' => array
         (
             'all' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
-                'href'                => 'act=select',
-                'class'               => 'header_edit_all',
-                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
+                'label' => &$GLOBALS['TL_LANG']['MSC']['all'],
+                'href' => 'act=select',
+                'class' => 'header_edit_all',
+                'attributes' => 'onclick="Backend.getScrollOffset()" accesskey="e"'
             )
         ),
         'operations' => array
         (
             'edit' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['edit'],
-                'href'                => 'act=edit',
-                'icon'                => 'edit.gif',
-                'button_callback'     => array('tl_fonds_renditevergleich', 'editItem')
+                'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['edit'],
+                'href' => 'act=edit',
+                'icon' => 'edit.gif',
+                //'button_callback'     => array('tl_fonds_renditevergleich', 'editItem')
             ),
             'copy' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['copy'],
-                'href'                => 'act=copy',
-                'icon'                => 'copy.gif',
-                'button_callback'     => array('tl_fonds_renditevergleich', 'copyItem')
+                'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['copy'],
+                'href' => 'act=copy',
+                'icon' => 'copy.gif',
+                //'button_callback'     => array('tl_fonds_renditevergleich', 'copyItem')
             ),
             'delete' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['delete'],
-                'href'                => 'act=delete',
-                'icon'                => 'delete.gif',
-                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
-                'button_callback'     => array('tl_fonds_renditevergleich', 'deleteItem')
+                'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['delete'],
+                'href' => 'act=delete',
+                'icon' => 'delete.gif',
+                'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
+                //'button_callback'     => array('tl_fonds_renditevergleich', 'deleteItem')
             ),
             /*
             'toggle' => array
@@ -130,129 +128,128 @@ $GLOBALS['TL_DCA']['tl_fonds_renditevergleich'] = array
     (
         'id' => array
         (
-            'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+            'sql' => "int(10) unsigned NOT NULL auto_increment"
         ),
         'tstamp' => array
         (
-            'sql'                     => "int(10) unsigned NOT NULL default '0'"
+            'sql' => "int(10) unsigned NOT NULL default '0'"
         ),
         'fondsname' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['fondsname'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'flag'                    => 1,
-            'inputType'               => 'text',
-            'eval'                    => array('mandatory'=> true, 'maxlength'=>255, 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['fondsname'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'flag' => 1,
+            'inputType' => 'text',
+            'eval' => array('mandatory' => true, 'maxlength' => 255, 'tl_class' => 'clr'),
+            'sql' => "varchar(255) NOT NULL default ''"
         ),
         'anbieter' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['anbieter'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'flag'                    => 1,
-            'inputType'               => 'text',
-            'eval'                    => array('mandatory'=> true, 'maxlength'=>255, 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['anbieter'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'flag' => 1,
+            'inputType' => 'text',
+            'eval' => array('mandatory' => true, 'maxlength' => 255, 'tl_class' => 'clr'),
+            'sql' => "varchar(255) NOT NULL default ''"
         ),
         'fondsart' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['fondsart'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'flag'                    => 1,
-            'options'                 => array('Dimensional Rentenfonds','Dimensional Aktienfonds','ETF Rentenfonds', 'ETF Aktienfonds'),
-            'inputType'               => 'select',
-            'eval'                    => array('mandatory'=> true, 'maxlength'=>255, 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['fondsart'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'flag' => 1,
+            'options' => array('Dimensional Rentenfonds', 'Dimensional Aktienfonds', 'ETF Rentenfonds', 'ETF Aktienfonds'),
+            'inputType' => 'select',
+            'eval' => array('mandatory' => true, 'maxlength' => 255, 'tl_class' => 'clr'),
+            'sql' => "varchar(255) NOT NULL default ''"
         ),
         'isin' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['isin'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'flag'                    => 1,
-            'inputType'               => 'text',
-            'eval'                    => array('mandatory'=> true, 'maxlength'=>255, 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['isin'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'flag' => 1,
+            'inputType' => 'text',
+            'eval' => array('mandatory' => true, 'maxlength' => 255, 'tl_class' => 'clr'),
+            'sql' => "varchar(255) NOT NULL default ''"
         ),
         'rendite3Jahre' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['rendite3Jahre'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'flag'                    => 1,
-            'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>5, 'rgxp' => 'digit', 'tl_class'=>'clr'),
-            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['rendite3Jahre'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'flag' => 1,
+            'inputType' => 'text',
+            'eval' => array('maxlength' => 6, 'rgxp' => 'digit', 'tl_class' => 'clr'),
+            'sql' => "float(5,2) NOT NULL default '0.00'"
         ),
         'rendite5Jahre' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['rendite5Jahre'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'flag'                    => 1,
-            'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>5, 'rgxp' => 'digit', 'tl_class'=>'clr'),
-            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['rendite5Jahre'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'flag' => 1,
+            'inputType' => 'text',
+            'eval' => array('maxlength' => 6, 'rgxp' => 'digit', 'tl_class' => 'clr'),
+            'sql' => "float(5,2) NOT NULL default '0.00'"
         ),
         'rendite10Jahre' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['rendite10Jahre'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'flag'                    => 1,
-            'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>5, 'rgxp' => 'digit', 'tl_class'=>'clr'),
-            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['rendite10Jahre'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'flag' => 1,
+            'inputType' => 'text',
+            'eval' => array('maxlength' => 6, 'rgxp' => 'digit', 'tl_class' => 'clr'),
+            'sql' => "float(5,2) NOT NULL default '0.00'"
         ),
         'volantilitaet' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['volantilitaet'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'filter'                  => true,
-            'flag'                    => 1,
-            'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>5, 'rgxp' => 'digit', 'tl_class'=>'clr'),
-            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['volantilitaet'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'filter' => true,
+            'flag' => 1,
+            'inputType' => 'text',
+            'eval' => array('maxlength' => 6, 'rgxp' => 'digit', 'tl_class' => 'clr'),
+            'sql' => "float(5,2) NOT NULL default '0.00'"
         ),
         'laufendeKosten' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['laufendeKosten'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'filter'                  => true,
-            'flag'                    => 1,
-            'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>5, 'rgxp' => 'digit', 'tl_class'=>'clr'),
-            'sql'                     => "float(5,2) unsigned NOT NULL default '0.00'"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['laufendeKosten'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'filter' => true,
+            'flag' => 1,
+            'inputType' => 'text',
+            'eval' => array('maxlength' => 6, 'rgxp' => 'digit', 'tl_class' => 'clr'),
+            'sql' => "float(5,2) NOT NULL default '0.00'"
         ),
         'factsheet' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['factsheet'],
-            'exclude'                 => true,
-            'search'                  => true,
-            'sorting'                 => true,
-            'flag'                    => 1,
-            'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>255, 'rgxp' => 'url', 'tl_class'=>'clr'),
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'label' => &$GLOBALS['TL_LANG']['tl_fonds_renditevergleich']['factsheet'],
+            'exclude' => true,
+            'search' => true,
+            'sorting' => true,
+            'flag' => 1,
+            'inputType' => 'text',
+            'eval' => array('maxlength' => 255, 'rgxp' => 'url', 'tl_class' => 'clr'),
+            'sql' => "varchar(255) NOT NULL default ''"
         ),
 
     )
 );
-
 
 
 /**
@@ -298,7 +295,7 @@ class tl_fonds_renditevergleich extends Backend
     /**
      * Return the edit item button
      *
-     * @param array  $row
+     * @param array $row
      * @param string $href
      * @param string $label
      * @param string $title
@@ -309,13 +306,13 @@ class tl_fonds_renditevergleich extends Backend
      */
     public function editItem($row, $href, $label, $title, $icon, $attributes)
     {
-        return '<a href="'.$this->addToUrl($href.'&amp;id='.$row['id']).'" title="'.specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
+        return '<a href="' . $this->addToUrl($href . '&amp;id=' . $row['id']) . '" title="' . specialchars($title) . '"' . $attributes . '>' . Image::getHtml($icon, $label) . '</a> ';
     }
 
     /**
      * Return the delete item button
      *
-     * @param array  $row
+     * @param array $row
      * @param string $href
      * @param string $label
      * @param string $title
@@ -326,7 +323,7 @@ class tl_fonds_renditevergleich extends Backend
      */
     public function deleteItem($row, $href, $label, $title, $icon, $attributes)
     {
-        return '<a href="'.$this->addToUrl($href.'&amp;id='.$row['id']).'" title="'.specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
+        return '<a href="' . $this->addToUrl($href . '&amp;id=' . $row['id']) . '" title="' . specialchars($title) . '"' . $attributes . '>' . Image::getHtml($icon, $label) . '</a> ';
     }
 
 }
