@@ -102,13 +102,10 @@ class ModuleFondsRenditevergleich extends \Module
         }
         // This is a bit "buggy" but it works ;-)
         // Do not show any datarecords if there are no checkboxes cheched
-        if($this->isAjax && $strWhere == '')
+        if ($this->isAjax && $strWhere == '')
         {
             $strWhere = " WHERE anbieter='DO NOT SHOW ANY DATARECORDS BECAUSE THERE ARE NO CHECKBOXES CHECKED'";
         }
-
-
-
 
 
         // Handle the "Anbieter" Select menu in the filter form
@@ -183,10 +180,10 @@ class ModuleFondsRenditevergleich extends \Module
                 case 'rendite5Jahre':
                 case 'rendite10Jahre':
                 case 'volantilitaet':
-                    $value = str_replace('.',',', $value);
-                    $value = str_replace('0,00','', $value);
+                    $value = str_replace('.', ',', $value);
+                    $value = str_replace('0,00', '', $value);
                     $value = $value != '' ? $value . ' %' : '';
-                break;
+                    break;
             }
             return $value;
         });
@@ -220,21 +217,21 @@ class ModuleFondsRenditevergleich extends \Module
     protected function getAnbieter()
     {
         $strAnbieter = '';
-        $objDb = $this->Database->execute("SELECT * FROM tl_fonds_renditevergleich ORDER BY anbieter");
-        $arrAnbieter = $objDb->fetchEach('anbieter');
+        $objDb = $this->Database->execute("SELECT * FROM tl_fonds_renditevergleich");
+        while ($objDb->next())
+        {
+            $strAnbieter .= trim($objDb->anbieter) . ',';
+        }
+        $arrAnbieter = explode(',', $strAnbieter);
+
+        // Remove empty
         $arrAnbieter = array_values($arrAnbieter);
         $arrAnbieter = array_unique($arrAnbieter);
-        $arrAnbieter = array_values($arrAnbieter);
-        $arrReturn = array();
-        foreach ($arrAnbieter as $v)
-        {
-            if (strlen($v))
-            {
-                $arrReturn[] = $v;
-            }
-        }
+        $arrAnbieter = array_filter($arrAnbieter);
+        // Sort array
+        asort($arrAnbieter);
 
-        return $arrReturn;
+        return $arrAnbieter;
     }
 
 
