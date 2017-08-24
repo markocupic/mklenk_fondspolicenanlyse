@@ -81,7 +81,7 @@ class ModuleFondsRenditevergleich extends \Module
 
 
 		// Handle the checkboxes in the filter form
-		$arrTranslate = array(
+		$arrFilter = array(
 			'etf_aktienfonds' => 'ETF Aktienfonds',
 			'etf_rentenfonds' => 'ETF Rentenfonds',
 			'dimensional_aktienfonds' => 'Dimensional Aktienfonds',
@@ -89,25 +89,24 @@ class ModuleFondsRenditevergleich extends \Module
 		);
 		$arrWhere = array();
 		$strWhere = '';
-		foreach ($arrTranslate as $k => $v)
+		foreach ($arrFilter as $k => $v)
 		{
 			if (\Input::get($k) == 1)
 			{
-				$arrWhere[] = "fondsart='" . $arrTranslate[$k] . "'";
+				$arrWhere[] = "fondsart='" . $arrFilter[$k] . "'";
 			}
 		}
 		if (count($arrWhere) > 0)
 		{
 			$strWhere = ' WHERE (' . implode(' OR ', $arrWhere) . ')';
 		}
+
 		// This is a bit "buggy" but it works ;-)
 		// Do not show any datarecords if there are no checkboxes cheched
 		if ($this->isAjax && $strWhere == '')
 		{
-			$strWhere = " WHERE anbieter='DO NOT SHOW ANY DATARECORDS BECAUSE THERE ARE NO CHECKBOXES CHECKED'";
+			$strWhere = " WHERE id < '0'";
 		}
-
-
 
 
 		$chartX = [];
@@ -115,13 +114,12 @@ class ModuleFondsRenditevergleich extends \Module
 		$chartBg = [];
 		$chartBorder = [];
 
-		$objDb = $this->Database->execute('SELECT * FROM tl_fonds_renditevergleich ORDER BY ' . $fieldRendite . ' DESC');
+		$objDb = $this->Database->execute('SELECT * FROM tl_fonds_renditevergleich ' . $strWhere . ' ORDER BY ' . $fieldRendite . ' DESC');
 
 		$i = 0;
 		$rows = array();
 		while ($objDb->next())
 		{
-			$strAnbieter = '';
 			$blnFound = false;
 
 			// If there is a filter
@@ -132,7 +130,9 @@ class ModuleFondsRenditevergleich extends \Module
 				$arrAnbieter = array_values($arrAnbieter);
 				$arrAnbieter = array_unique($arrAnbieter);
 				$arrAnbieter = array_filter($arrAnbieter);
-				if (in_array(strtolower(\Input::get('anbieter')), $arrAnbieter))
+				// !important urldecode Input
+				$strFilter = urldecode(\Input::get('anbieter'));
+				if (in_array(strtolower($strFilter), $arrAnbieter))
 				{
 					$rows[] = $objDb->row();
 					$blnFound = true;
