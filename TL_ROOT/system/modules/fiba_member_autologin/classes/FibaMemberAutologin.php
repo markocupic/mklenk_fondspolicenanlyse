@@ -27,13 +27,14 @@ class FibaMemberAutologin extends \Frontend
     public function validateAutologinKey($objPage, $objLayout, $objPageRegular)
     {
 
-        if(isset($_SESSION['fiba_autologin_user']))
-        {
-            unset($_SESSION['fiba_autologin_user']);
-        }
-
         if (TL_MODE == 'FE')
         {
+            // Unset $_SESSION['fiba_autologin_user']
+            if (isset($_SESSION['fiba_autologin_user']))
+            {
+                unset($_SESSION['fiba_autologin_user']);
+            }
+
             if (\Input::get('autologin') == 'true' && \Input::get('autologinKey') != '')
             {
 
@@ -41,8 +42,19 @@ class FibaMemberAutologin extends \Frontend
                 $objMember = \Database::getInstance()->prepare("SELECT * FROM tl_member WHERE autologinKey=? AND disable=? AND login=? AND enableAutologin=?")->execute(\Input::get('autologinKey'), '', '1', '1');
                 if (!$objMember->numRows)
                 {
+                    // Wrong key! Log hacking attempts.
+                    \Controller::log('Could not find any user to which the autologin key "' . \Input::get('autologinKey') . '" is assigned.', __METHOD__, TL_ACCESS);
+
+                    // Logout User
+                    if (FE_USER_LOGGED_IN)
+                    {
+                        $objUser = \FrontendUser::getInstance();
+                        $objUser->logout();
+                    }
+
                     // Redirect to home
                     $this->redirectToHome();
+                    return;
                 }
 
                 $objMemberModel = \MemberModel::findByPk($objMember->id);
@@ -74,6 +86,11 @@ class FibaMemberAutologin extends \Frontend
                         {
                             $this->objAutologinUser = $objMemberModel;
                         }
+                        else
+                        {
+                            // Wrong http referer! Log hacking attempts.
+                            \Controller::log('Tried to login as "' . $objMemberModel->username . '" via the fiba member autologin key. But the referer "' . $_SERVER["HTTP_REFERER"] . '" is not allowed.', __METHOD__, TL_ACCESS);
+                        }
                     }
                     else
                     {
@@ -84,13 +101,24 @@ class FibaMemberAutologin extends \Frontend
                 if ($this->objAutologinUser !== null)
                 {
                     $this->loginUser();
+                    return;
                 }
+
+                // Logout User
+                if (FE_USER_LOGGED_IN)
+                {
+                    $objUser = \FrontendUser::getInstance();
+                    $objUser->logout();
+                }
+
 
                 // Redirect to home
                 $this->redirectToHome();
 
             }
         }
+
+
     }
 
 
@@ -108,7 +136,6 @@ class FibaMemberAutologin extends \Frontend
 
             $this->import('FrontendUser', 'User');
             $strRedirect = '';
-
 
 
             // Overwrite the jumpTo page with an individual group setting
@@ -130,13 +157,13 @@ class FibaMemberAutologin extends \Frontend
             }
 
 
-
             // Save user id into the session
             $_SESSION['fiba_autologin_user'] = $this->objAutologinUser->id;
 
             // Login and redirect
             if ($this->User->login())
             {
+                \Controller::log('User "' . $this->objAutologinUser->username . '" was logged in automatically via the fiba-member-autologin-module.', __METHOD__, TL_ACCESS);
                 \Controller::redirect($strRedirect);
             }
 
