@@ -179,7 +179,7 @@ class FibaMemberAutologin extends \Frontend
      */
     public static function generateKey()
     {
-        return md5(random_int(1, 10000000000) . microtime()) . md5(random_int(1, 10000000000) . microtime()) . md5(random_int(1, 10000000000) . microtime());
+        return md5(rand(1, 10000000000) . microtime()) . md5(rand(1, 10000000000) . microtime()) . md5(rand(1, 10000000000) . microtime());
     }
 
 
