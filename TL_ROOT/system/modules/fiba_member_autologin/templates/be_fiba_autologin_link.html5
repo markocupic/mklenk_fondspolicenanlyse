@@ -1,0 +1,1 @@
+<a href="<?= $this->protocol ?><?= \Environment::get('host') ?>?autologin=true&autologinKey=<?= $this->autologinKey ?>" title="Fiba Fondspolicen Analyse">Fiba Fondspolicen Analyse</a>
