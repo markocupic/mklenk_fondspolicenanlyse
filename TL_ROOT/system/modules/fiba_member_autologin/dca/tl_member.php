@@ -81,7 +81,11 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['autologinHostnames'] = array
                 'label' => &$GLOBALS['TL_LANG']['tl_member']['autologinHostnameItem'],
                 'exclude' => true,
                 'inputType' => 'text',
-                'eval' => array('style' => 'width:220px')
+                'save_callback' => array
+                (
+                    array('tl_member_fiba_autoload', 'checkStaticUrl')
+                ),
+                'eval' => array('rgxp' => 'url', 'trailingSlash' => false, 'style' => 'width:420px;')
             )
         )
     ),
@@ -153,12 +157,33 @@ class tl_member_fiba_autoload extends Backend
         $html = "
 <div id=\"sub_htmlDownloadButton\">
     <div>
-        <h3><label>HTML Schnipsel downloaden</label></h3>
+        <h3><label>%s</label></h3>
         <br>
-        <button class=\"tl_submit\" onclick=\"location.href='" . Environment::get('request') . "&amp;action=downloadHtml'; return false;\">HTML Schnipsel download</button>
+        <button class=\"tl_submit\" onclick=\"location.href='%s&amp;action=downloadHtml'; return false;\">HTML Schnipsel download</button>
+        <p class='tl_help tl_tip'>%s</p>
     </div>
 </div>";
+        $html = sprintf($html, $GLOBALS['TL_LANG']['tl_member']['downloadAutologinLinkButton'][0], Environment::get('request'), $GLOBALS['TL_LANG']['tl_member']['downloadAutologinLinkButton'][1]);
         return $html;
+    }
+
+    /**
+     * Check a static URL
+     *
+     * @param mixed $varValue
+     *
+     * @return mixed
+     */
+    public function checkStaticUrl($varValue)
+    {
+        if ($varValue != '')
+        {
+            $varValue = preg_replace('@https?://@', '', $varValue);
+            $varValue = preg_replace('@www.@', '', $varValue);
+
+        }
+
+        return $varValue;
     }
 }
 
