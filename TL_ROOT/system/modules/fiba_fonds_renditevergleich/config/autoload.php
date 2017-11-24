@@ -24,10 +24,10 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Modules
-	'Markocupic\ModuleFondsRenditevergleich' => 'system/modules/fiba_fonds_renditevergleich/modules/ModuleFondsRenditevergleich.php',
+	'Markocupic\ModuleFibaSystemvergleich' => 'system/modules/fiba_fonds_renditevergleich/modules/ModuleFondsRenditevergleich.php',
 
     // Models
-    'Contao\FondsRenditevergleichModel'            => 'system/modules/fiba_fonds_renditevergleich/models/FondsRenditevergleichModel.php',
+    'Contao\FibaSystemvergleichModel' => 'system/modules/fiba_fonds_renditevergleich/models/FondsRenditevergleichModel.php',
 ));
 
 

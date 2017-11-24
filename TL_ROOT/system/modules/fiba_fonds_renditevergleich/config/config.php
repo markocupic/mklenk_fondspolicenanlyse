@@ -6,6 +6,10 @@
  * Time: 22:25
  */
 
+if(!isset($GLOBALS['BE_MOD']['fiba']))
+{
+    $GLOBALS['BE_MOD']['fiba'] = array();
+}
 $GLOBALS['BE_MOD']['fiba']['fiba_fonds_renditevergleich'] = array
 (
     'tables' => array('tl_fonds_renditevergleich'),
@@ -16,7 +20,7 @@ array_insert($GLOBALS['FE_MOD'], 2, array
 (
     'vorsorgefonds' => array
     (
-        'fonds_renditevergleich'    => 'Markocupic\ModuleFondsRenditevergleich',
+        'fonds_renditevergleich'    => 'Markocupic\ModuleFibaSystemvergleich',
     )
 ));
 

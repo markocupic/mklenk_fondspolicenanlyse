@@ -23,12 +23,15 @@
  * Back end modules are stored in a global array called "BE_MOD". You can add
  * your own modules by adding them to the array.
  */
-array_insert($GLOBALS['BE_MOD']['fiba'], 1, array(
-    'fondspolicen' => array(
+if(!isset($GLOBALS['BE_MOD']['fiba']))
+{
+    $GLOBALS['BE_MOD']['fiba'] = array();
+}
+
+$GLOBALS['BE_MOD']['fiba']['fondspolicen'] = array(
         'tables' => array('tl_fondspolicen'),
         'icon'   => 'system/modules/fiba_fondspolicen/assets/icon.png',
-    ),
-));
+);
 
 
 /**

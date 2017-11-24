@@ -1,0 +1,97 @@
+<?php $this->extend('block_searchable'); ?>
+
+<?php $this->block('content'); ?>
+
+
+<!-- get chart.js from cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+
+<!-- Filterformular einfuegen -->
+<div class="ce_form block">
+    <form action="{{env::request}}" id="fibaSystemvergleichForm" method="post" enctype="application/x-www-form-urlencoded">
+        <div class="formbody">
+            <input type="hidden" name="FORM_SUBMIT" value="systemvergleichForm">
+            <input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">
+
+            <table class="table">
+                <tr class="row_0">
+                    <th class="col_0"></th>
+                    <th class="col_1">Fondssparplan</th>
+                    <th class="col_2">Fondspolice</th>
+                </tr>
+                <tr class="row_1">
+                    <td class="col_0">Laufzeit</td>
+                    <td class="col_1">
+                        <div class="widget widget-select select">
+                            <select name="fondssparplan_laufzeit" data-input="select_1-1" class="select" required="">
+                                <option value="" selected>ausw&auml;hlen</option>
+                                <?php foreach ($this->arrFondssparplanLaufzeit as $value): ?>
+                                    <option value="<?= $value ?>"><?= $value ?> Jahre</option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="col_2">
+                        <div class="widget widget-select select">
+                            <select name="fondspolice_laufzeit" data-input="select_1-2" class="select" required="">
+                                <option value="" selected>ausw&auml;hlen</option>
+                                <?php foreach ($this->arrFondspoliceLaufzeit as $value): ?>
+                                    <option value="<?= $value ?>"><?= $value ?> Jahre</option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="row_2">
+                    <td class="col_0">Kosten</td>
+                    <td class="col_1">
+                        <div class="widget widget-select select">
+                            <select name="fondssparplan_kosten" data-input="select_2-1" class="select" required="">
+                                <option value="" selected>ausw&auml;hlen</option>
+                                <?php foreach ($this->arrFondssparplanKosten as $value): ?>
+                                    <option value="<?= $value ?>"><?= $value ?> &percnt;</option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="col_2">
+                        <div class="widget widget-select select">
+                            <select name="fondspolice_kosten" data-input="select_2-2" class="select" required="">
+                                <option value="" selected>ausw&auml;hlen</option>
+                                <?php foreach ($this->arrFondspoliceKosten as $value): ?>
+                                    <option value="<?= $value ?>"><?= $value ?> &percnt;</option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="row_3">
+                    <td class="col_0">Ablaufleistung</td>
+                    <td class="col_1 output-cell"><span data-output="cell_3-1"></span></td>
+                    <td class="col_2 output-cell"><span data-output="cell_3-2"></span></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+
+
+<canvas id="fibaSystemvergleichChart" height="200"></canvas>
+
+<script>
+        (function ($) {
+            $(document).ready(function () {
+
+                if ($('#fibaSystemvergleichChart').length && $('#fibaSystemvergleichForm').length) {
+
+                    if ($(window).innerWidth() >= 480)
+                    {
+                        // Instantiate object
+                        objSystemvergleich = new FibaSystemvergleich('#fibaSystemvergleichForm', '#fibaSystemvergleichChart', {});
+                    }
+                }
+            });
+        })(jQuery);
+
+</script>
+<?php $this->endblock(); ?>
