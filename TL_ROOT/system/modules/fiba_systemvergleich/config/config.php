@@ -15,13 +15,17 @@ $GLOBALS['BE_MOD']['fiba']['fiba_systemvergleich'] = array
     'icon'   => 'system/modules/fiba_systemvergleich/assets/icons/table.png'
 );
 
-array_insert($GLOBALS['FE_MOD'], 2, array
-(
-    'fiba_systemvergleich' => array
-    (
-        'mod_fiba_systemvergleich'    => 'Markocupic\ModuleFibaSystemvergleich',
-    )
-));
+
+/**
+ * Front end modules
+ */
+if(!isset($GLOBALS['FE_MOD']['fiba']))
+{
+    $GLOBALS['FE_MOD']['fiba'] = array();
+}
+
+$GLOBALS['FE_MOD']['fiba']['mod_fiba_systemvergleich'] = 'Markocupic\ModuleFibaSystemvergleich';
+
 
 if(TL_MODE == 'FE')
 {

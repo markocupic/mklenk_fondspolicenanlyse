@@ -31,6 +31,11 @@ $GLOBALS['TL_CSS'][] = 'system/modules/fiba_member_plus/assets/stylesheet.css';
 /**
  * Front end modules
  */
+if(!isset($GLOBALS['FE_MOD']['fiba']))
+{
+    $GLOBALS['FE_MOD']['fiba'] = array();
+}
+
 $GLOBALS['FE_MOD']['fiba']['fibaListEmpfehlungsgeber'] = 'FibaMemberPlus\ModuleFibaListEmpfehlungsgeber';
 
 

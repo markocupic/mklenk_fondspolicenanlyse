@@ -40,8 +40,12 @@ $GLOBALS['BE_MOD']['fiba']['fondspolicen'] = array(
  * Front end modules are stored in a global array called "FE_MOD". You can add
  * your own modules by adding them to the array.
  **/
-$GLOBALS['FE_MOD']['fondspolicen'] = array(
-    'fondspolicenvergleich' => 'Markocupic\FondspolicenVergleich',
 
-);
+if(!isset($GLOBALS['FE_MOD']['fiba']))
+{
+    $GLOBALS['FE_MOD']['fiba'] = array();
+}
+
+$GLOBALS['FE_MOD']['fiba']['fondspolicenvergleich'] = 'Markocupic\FondspolicenVergleich';
+
 

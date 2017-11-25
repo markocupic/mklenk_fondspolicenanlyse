@@ -23,11 +23,11 @@ ClassLoader::addNamespaces(array
  */
 ClassLoader::addClasses(array
 (
-	// Modules
-	'Markocupic\ModuleFibaSystemvergleich' => 'system/modules/fiba_systemvergleich/modules/ModuleFibaSystemvergleich.php',
-
 	// Models
 	'Contao\FibaSystemvergleichModel'      => 'system/modules/fiba_systemvergleich/models/FibaSystemvergleichModel.php',
+
+	// Modules
+	'Markocupic\ModuleFibaSystemvergleich' => 'system/modules/fiba_systemvergleich/modules/ModuleFibaSystemvergleich.php',
 ));
 
 

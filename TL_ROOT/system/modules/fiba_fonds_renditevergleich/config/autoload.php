@@ -23,11 +23,11 @@ ClassLoader::addNamespaces(array
  */
 ClassLoader::addClasses(array
 (
-	// Modules
-	'Markocupic\ModuleFibaSystemvergleich' => 'system/modules/fiba_fonds_renditevergleich/modules/ModuleFondsRenditevergleich.php',
+	// Models
+	'Contao\FondsRenditevergleichModel'      => 'system/modules/fiba_fonds_renditevergleich/models/FondsRenditevergleichModel.php',
 
-    // Models
-    'Contao\FibaSystemvergleichModel' => 'system/modules/fiba_fonds_renditevergleich/models/FondsRenditevergleichModel.php',
+	// Modules
+	'Markocupic\ModuleFondsRenditevergleich' => 'system/modules/fiba_fonds_renditevergleich/modules/ModuleFondsRenditevergleich.php',
 ));
 
 
@@ -36,6 +36,6 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'mod_fonds_renditevergleich'                     => 'system/modules/fiba_fonds_renditevergleich/templates',
-	'mod_fonds_renditevergleich_ajax'                => 'system/modules/fiba_fonds_renditevergleich/templates',
+	'mod_fonds_renditevergleich'      => 'system/modules/fiba_fonds_renditevergleich/templates',
+	'mod_fonds_renditevergleich_ajax' => 'system/modules/fiba_fonds_renditevergleich/templates',
 ));

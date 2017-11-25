@@ -7,7 +7,7 @@
  */
 
 // Frontend Modules
-$GLOBALS['TL_LANG']['FMD']['vorsorgefonds'] = array('Vorsorgefonds');
+$GLOBALS['TL_LANG']['FMD']['fiba'] = array('Fiba Module');
 $GLOBALS['TL_LANG']['FMD']['vorsorgefondslist'] = array('Vorsorgefonds Liste mit Filter');
 
 // Backend Modules

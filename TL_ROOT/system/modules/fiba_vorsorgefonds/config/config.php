@@ -12,13 +12,17 @@ $GLOBALS['BE_MOD']['fiba']['vorsorgefonds'] = array
     'icon'   => 'system/modules/fiba_vorsorgefonds/assets/icons/table.png'
 );
 
-array_insert($GLOBALS['FE_MOD'], 2, array
-(
-    'vorsorgefonds' => array
-    (
-        'vorsorgefondslist'    => 'Markocupic\ModuleVorsorgefondsList',
-    )
-));
+
+/**
+ * Front end modules
+ */
+if(!isset($GLOBALS['FE_MOD']['fiba']))
+{
+    $GLOBALS['FE_MOD']['fiba'] = array();
+}
+
+$GLOBALS['FE_MOD']['fiba']['vorsorgefondslist'] = 'Markocupic\ModuleVorsorgefondsList';
+
 
 if(TL_MODE == 'FE')
 {

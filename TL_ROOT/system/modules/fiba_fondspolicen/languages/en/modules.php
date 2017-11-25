@@ -15,13 +15,14 @@
 /**
  * Back end modules
  */
-$GLOBALS['TL_LANG']['MOD']['fiba'] = array('FIBA-Tools', 'FIBA Datenerfassungstools');
+$GLOBALS['TL_LANG']['MOD']['fiba'] = 'FIBA-Tools';
 $GLOBALS['TL_LANG']['MOD']['fondspolicen'] = array('Fondspolicen', 'Fondspolicen erfassen');
 
 
 /**
  * Front end modules
  */
+$GLOBALS['TL_LANG']['FMD']['fiba'] = array('Fiba Module');
 $GLOBALS['TL_LANG']['FMD']['fondspolicenvergleich'] = array('Fondspolicenvergleich (AJAX)', 'Fondspolicenvergleich im Frontend ausgeben.');
 
 

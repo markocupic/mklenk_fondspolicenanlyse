@@ -16,13 +16,15 @@ $GLOBALS['BE_MOD']['fiba']['fiba_fonds_renditevergleich'] = array
     'icon'   => 'system/modules/fiba_fonds_renditevergleich/assets/icons/table.png'
 );
 
-array_insert($GLOBALS['FE_MOD'], 2, array
-(
-    'vorsorgefonds' => array
-    (
-        'fonds_renditevergleich'    => 'Markocupic\ModuleFibaSystemvergleich',
-    )
-));
+
+
+if(!isset($GLOBALS['FE_MOD']['fiba']))
+{
+    $GLOBALS['FE_MOD']['fiba'] = array();
+}
+
+$GLOBALS['FE_MOD']['fiba']['fonds_renditevergleich'] = 'Markocupic\ModuleFondsRenditevergleich';
+
 
 if(TL_MODE == 'FE')
 {

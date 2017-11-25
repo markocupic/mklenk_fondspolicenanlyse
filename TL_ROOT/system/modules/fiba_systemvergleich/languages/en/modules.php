@@ -7,6 +7,7 @@
  */
 
 // Frontend Modules
+$GLOBALS['TL_LANG']['FMD']['fiba'] = array('Fiba Module');
 $GLOBALS['TL_LANG']['FMD']['mod_fiba_systemvergleich'] = array('FIBA Systemvergleich mit Formular und Chart');
 
 // Backend Modules

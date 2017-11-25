@@ -3,7 +3,7 @@
 /**
  * Contao Open Source CMS
  *
- * Copyright (c) 2005-2016 Leo Feyer
+ * Copyright (c) 2005-2017 Leo Feyer
  *
  * @license LGPL-3.0+
  */
@@ -14,7 +14,6 @@
  */
 ClassLoader::addNamespaces(array
 (
-	'FondspolicenVergleich',
 	'Markocupic',
 ));
 
@@ -25,13 +24,13 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
-	'Markocupic\FondspolicenTcpdf' => 'system/modules/fiba_fondspolicen/classes/FondspolicenTcpdf.php',
+	'Markocupic\FondspolicenTcpdf'     => 'system/modules/fiba_fondspolicen/classes/FondspolicenTcpdf.php',
 
 	// Models
-	'Contao\FondspolicenModel'            => 'system/modules/fiba_fondspolicen/models/FondspolicenModel.php',
+	'Contao\FondspolicenModel'         => 'system/modules/fiba_fondspolicen/models/FondspolicenModel.php',
 
 	// Modules
-	'Markocupic\FondspolicenVergleich'        => 'system/modules/fiba_fondspolicen/modules/FondspolicenVergleich.php',
+	'Markocupic\FondspolicenVergleich' => 'system/modules/fiba_fondspolicen/modules/FondspolicenVergleich.php',
 ));
 
 
@@ -40,7 +39,6 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'mod_fondspolicenvergleich' => 'system/modules/fiba_fondspolicen/templates',
 	'fondspolicenvergleich_tcpdf' => 'system/modules/fiba_fondspolicen/templates',
-
+	'mod_fondspolicenvergleich'   => 'system/modules/fiba_fondspolicen/templates',
 ));
