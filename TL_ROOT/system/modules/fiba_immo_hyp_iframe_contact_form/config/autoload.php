@@ -39,7 +39,7 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'be_fiba_b2b_hyp_iframe'    => 'system/modules/fiba_immo_hyp_iframe_contact_form/templates',
-	'mod_custom_section_iframe' => 'system/modules/fiba_immo_hyp_iframe_contact_form/templates',
-	'mod_iframe_contact_form'   => 'system/modules/fiba_immo_hyp_iframe_contact_form/templates',
+	'be_fiba_b2b_hyp_iframe'            => 'system/modules/fiba_immo_hyp_iframe_contact_form/templates',
+	'mod_iframe_contact_form'           => 'system/modules/fiba_immo_hyp_iframe_contact_form/templates',
+	'be_fiba_b2b_hyp_iframe_obfuscated' => 'system/modules/fiba_immo_hyp_iframe_contact_form/templates',
 ));

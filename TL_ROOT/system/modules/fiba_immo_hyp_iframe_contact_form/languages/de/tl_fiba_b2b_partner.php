@@ -25,3 +25,13 @@ $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['website'] = array('Webseite (Referer
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['companyIdToken'] = array('Company Id Token', 'Das Token ist eine eindeutige Referenz und wird für die Identifikation der Herkunft von Formularanfrage benötigt.');
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['enableRefererCheck'] = array('Referer Check einschalten', 'Wenn Sie den Referer Check einschalten sind nur noch Zugriffe von der Partnerwebseite auf die Zielseite möglich.');
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['targetPage'] = array('Zielseite', 'Bitte geben Sie die Zielseite an, auf die der Iframe zeigt.');
+
+// Global operations
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['new'] = array('Neuen Partner erstellen', '');
+
+// Operations
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['edit'] = array('Partner mit ID %s bearbeiten', 'Partner mit ID %s bearbeiten');
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['copy'] = array('Partner mit ID %s kopieren', 'Partner mit ID %s kopieren');
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['delete'] = array('Partner mit ID %s l&ouml;schen', 'Partner mit ID %s l&ouml;schen');
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['show'] = array('Partner mit ID %s ansehen', 'Partner mit ID %s ansehen');
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['toggle'] = array('Partner mit ID %s aus-/einblenden', 'Partner mit ID %s aus-/einblenden');

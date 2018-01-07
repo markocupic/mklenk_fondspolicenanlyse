@@ -68,21 +68,29 @@ class IframeContactForm extends Module
 			$objPartner = FibaB2bPartnerModel::findByCompanyIdToken($token);
 			if ($objPartner !== null)
 			{
-				if ($objPartner->enableRefererCheck)
+				if (!$objPartner->disable)
 				{
-					if (strpos($_SERVER['HTTP_REFERER'], $objPartner->website) !== false)
+					if ($objPartner->enableRefererCheck)
 					{
-						$this->objPartner = $objPartner;
+						if (strpos($_SERVER['HTTP_REFERER'], $objPartner->website) !== false)
+						{
+							$this->objPartner = $objPartner;
+						}
+						else
+						{
+							$this->hasError = true;
+							$this->errorMsg[] = $GLOBALS['TL_LANG']['MSC']['refererCheckFailed'];
+						}
 					}
 					else
 					{
-						$this->hasError = true;
-						$this->errorMsg[] = $GLOBALS['TL_LANG']['MSC']['refererCheckFailed'];
+						$this->objPartner = $objPartner;
 					}
 				}
 				else
 				{
-					$this->objPartner = $objPartner;
+					$this->hasError = true;
+					$this->errorMsg[] = $GLOBALS['TL_LANG']['MSC']['partnerDisabled'];
 				}
 			}
 			else
@@ -92,7 +100,7 @@ class IframeContactForm extends Module
 			}
 
 			// Do not check on form submit
-			if($_POST['FORM_SUBMIT'] != '')
+			if ($_POST['FORM_SUBMIT'] != '')
 			{
 				$this->hasError = null;
 				$this->errorMsg = [];

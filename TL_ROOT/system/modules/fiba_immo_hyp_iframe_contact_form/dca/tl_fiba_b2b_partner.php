@@ -272,8 +272,10 @@ class tl_fiba_b2b_partner extends Backend
 						$host = Environment::get('host');
 						$href = $protocol . $host . '/' . $targetSRC . '?showContactForm=true&companyIdToken=' . $objPartner->companyIdToken;
 
-						$objTemplate = new BackendTemplate('be_fiba_b2b_hyp_iframe');
+						$objTemplate = new BackendTemplate('be_fiba_b2b_hyp_iframe_obfuscated');
 						$objTemplate->href = $href;
+						$objTemplate->hrefEncoded = base64_encode($href);
+
 						$objTemplate->companyName = $objPartner->companyName;
 
 						$objTempFile = new File('system/tmp/fiba_b2b_partner.txt');

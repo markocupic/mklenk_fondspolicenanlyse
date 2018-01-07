@@ -15,6 +15,7 @@
 /**
  * Namespace
  */
+
 namespace Markocupic\FibaImmoHypIframeContactForm;
 
 use Contao\Input;
@@ -45,7 +46,10 @@ class LoadFormField
 				$objPartner = FibaB2bPartnerModel::findByCompanyIdToken($token);
 				if ($objPartner !== null)
 				{
-					$objWidget->value = $objPartner->companyName != '' ? htmlspecialchars($objPartner->companyName) : 'Keine Zuordnung moeglich';
+					if (!$objPartner->disable)
+					{
+						$objWidget->value = $objPartner->companyName != '' ? htmlspecialchars($objPartner->companyName) : 'Keine Zuordnung moeglich';
+					}
 				}
 			}
 		}
