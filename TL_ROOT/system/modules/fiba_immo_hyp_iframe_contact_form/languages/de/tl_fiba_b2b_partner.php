@@ -15,6 +15,9 @@
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['company_legend'] = 'Firmenangaben';
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['iframe_legend'] = 'Iframe-Einstellungen';
 
+// References
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['encoded'] = 'verschl&uuml;sselt';
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['decoded'] = 'unverschl&uuml;sselt';
 
 // Fields
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['companyName'] = array('Partner (Firmenname)', 'Geben Sie den Namen des Partners ein.');
@@ -25,6 +28,9 @@ $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['website'] = array('Webseite (Referer
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['companyIdToken'] = array('Company Id Token', 'Das Token ist eine eindeutige Referenz und wird für die Identifikation der Herkunft von Formularanfrage benötigt.');
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['enableRefererCheck'] = array('Referer Check einschalten', 'Wenn Sie den Referer Check einschalten sind nur noch Zugriffe von der Partnerwebseite auf die Zielseite möglich.');
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['targetPage'] = array('Zielseite', 'Bitte geben Sie die Zielseite an, auf die der Iframe zeigt.');
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['obfuscateIframe'] = array('Iframe codiert zum Download anbieten', 'Bitte geben Sie an, ob Sie den Iframe codiert zum Download anbieten m&ouml;chten.');
+$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByEmail'] = array('Partner angedockt durch (E-Mail Adresse)', 'Bitte geben Sie hier eine E-Mail-Adresse an, und bestimmen Sie so, wer eine Kopie der Formularanfrage bekommen soll.');
+
 
 // Global operations
 $GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['new'] = array('Neuen Partner erstellen', '');

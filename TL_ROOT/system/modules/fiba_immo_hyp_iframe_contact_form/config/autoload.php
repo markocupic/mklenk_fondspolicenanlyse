@@ -24,7 +24,7 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
-	'Markocupic\FibaImmoHypIframeContactForm\LoadFormField'     => 'system/modules/fiba_immo_hyp_iframe_contact_form/classes/LoadFormField.php',
+	'Markocupic\FibaImmoHypIframeContactForm\FormHook'     => 'system/modules/fiba_immo_hyp_iframe_contact_form/classes/FormHook.php',
 
 	// Models
 	'Contao\FibaB2bPartnerModel'                                => 'system/modules/fiba_immo_hyp_iframe_contact_form/models/FibaB2bPartnerModel.php',
