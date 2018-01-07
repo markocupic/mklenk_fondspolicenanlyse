@@ -1,0 +1,12 @@
+<?php $this->extend('block_searchable'); ?>
+
+<?php $this->block('content'); ?>
+
+<?php if($this->hasError): ?>
+<h2>Sie haben kein Recht diese Seite aufzurufen.</h2>
+<p class="error-msg"><?= $this->errorMsg ?></p>
+<?php else: ?>
+{{insert_form::<?= $this->form ?>}}
+<?php endif; ?>
+
+<?php $this->endblock(); ?>

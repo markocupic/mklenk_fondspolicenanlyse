@@ -1,0 +1,11 @@
+#sub_htmlDownloadButton button.tl_submit
+{
+    background: red;
+    color: white;
+    text-shadow: none;
+    border:0;
+    padding: 10px 12px;
+    border-radius: 0;
+}
+
+

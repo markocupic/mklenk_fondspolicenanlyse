@@ -1,0 +1,40 @@
+<!-- begin iframe -->
+<div id="fibaIframeContainer" data-iframe-width="1000" data-iframe-height="800" data-iframe-src="https://www.fiba-kredit.de/formularseite.html?showContactForm=true&companyIdToken=b461be6986d1c1b4ad6db3bfcf0b6da8cc126efcc267c036d4ba7237e73e8dccbc134fcb63de0d91" class="fiba-iframe-container"></div>
+
+<script>
+  /**
+   * Do some custom configs after iframe is ready
+   * @param ifrm
+   */
+  function fibaCallOnDomready(ifrm) {
+    // Do some custom config stuff here:
+  }
+
+
+  /**
+   * Inject iframe
+   */
+  function injectFibaIframe() {
+    // document ready
+    if (fibaIframeReady === true) {
+      return;
+    }
+    fibaIframeReady = true;
+
+    var container = document.getElementById('fibaIframeContainer');
+    var ifrm = document.createElement('iframe');
+    ifrm.setAttribute('id', 'fibaIframe');
+    ifrm.setAttribute('width', container.getAttribute('data-iframe-width'));
+    ifrm.setAttribute('height', container.getAttribute('data-iframe-height'));
+    container.appendChild(ifrm);
+
+    // assign url
+    ifrm.setAttribute('src', container.getAttribute('data-iframe-src'));
+    fibaCallOnDomready(ifrm);
+  }
+
+  var fibaIframeReady = false;
+  injectFibaIframe();
+
+</script>
+<!-- end iframe -->
