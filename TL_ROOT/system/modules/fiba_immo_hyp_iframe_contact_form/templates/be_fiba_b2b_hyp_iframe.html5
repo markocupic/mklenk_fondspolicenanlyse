@@ -1,40 +1,5 @@
 <!-- begin iframe for <?= $this->companyName ?> -->
-<div id="fibaIframeContainer" data-iframe-width="1000" data-iframe-height="800" data-iframe-src="<?= $this->href ?>" class="fiba-iframe-container"></div>
-
-<script>
-  /**
-   * Do some custom configs after iframe is ready
-   * @param ifrm
-   */
-  function fibaCallOnDomready(ifrm) {
-    // Do some custom config stuff here:
-  }
-
-
-  /**
-   * Inject iframe
-   */
-  function injectFibaIframe() {
-    // document ready
-    if (fibaIframeReady === true) {
-      return;
-    }
-    fibaIframeReady = true;
-
-    var container = document.getElementById('fibaIframeContainer');
-    var ifrm = document.createElement('iframe');
-    ifrm.setAttribute('id', 'fibaIframe');
-    ifrm.setAttribute('width', container.getAttribute('data-iframe-width'));
-    ifrm.setAttribute('height', container.getAttribute('data-iframe-height'));
-    container.appendChild(ifrm);
-
-    // assign url
-    ifrm.setAttribute('src', container.getAttribute('data-iframe-src'));
-    fibaCallOnDomready(ifrm);
-  }
-
-  var fibaIframeReady = false;
-  injectFibaIframe();
-
-</script>
+<div id="fibaIframeContainer" class="fiba-iframe-container">
+  <iframe  width="1000" height="800" src="<?= $this->href ?>"></iframe>
+</div>
 <!-- end iframe -->
