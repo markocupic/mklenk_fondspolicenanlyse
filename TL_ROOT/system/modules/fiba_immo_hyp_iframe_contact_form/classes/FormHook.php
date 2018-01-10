@@ -94,11 +94,17 @@ class FormHook
                         {
                             return;
                         }
-
                         $recipient = $objPartner->partnerHiredByEmail;
 
+
+                        $recipientCc = '';
+                        if (Validator::isEmail($recipient))
+                        {
+                            $recipientCc = $objPartner->email;
+                        }
+
                         $message = 'Hallo ' . "\n\n";
-                        $message .= 'Sie haben eine neue Anfrage von:  ' . "\n\n\n";
+                        $message .= 'Eine neue Anfrage ist eingegangen von:  ' . "\n\n\n";
                         $message .= '-----------------------------------  ' . "\n";
                         foreach ($arrSubmitted as $k => $v)
                         {
@@ -123,7 +129,7 @@ class FormHook
                         $message .= '-----------------------------------  ' . "\n";
 
                         $message .= 'Dies ist eine automatisch generierte Nachricht. Bitte antworten Sie nicht darauf.' . "\n\n";
-                        $message .= 'Freudliche Gruesse.' . "\n\n";
+                        $message .= 'Freundliche Gruesse.' . "\n\n";
                         $message .= $GLOBALS['TL_ADMIN_EMAIL'] . "\n\n";
 
 
@@ -135,13 +141,17 @@ class FormHook
                         $email->fromName = $GLOBALS['TL_ADMIN_NAME'];
                         $email->subject = Controller::replaceInsertTags($objForm->subject, false);
                         $email->text = $message;
+
+                        // Send a copy to the partner
+                        if ($recipientCc != '')
+                        {
+                            $email->sendCc($recipientCc);
+                        }
+
                         $email->sendTo($recipient);
                     }
                 }
             }
         }
-
-
     }
-
 }
