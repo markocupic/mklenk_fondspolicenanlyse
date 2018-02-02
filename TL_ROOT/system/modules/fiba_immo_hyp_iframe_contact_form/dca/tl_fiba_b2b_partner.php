@@ -179,7 +179,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'exclude'   => true,
             'search'    => true,
             'inputType' => 'text',
-            'eval'      => array('mandatory' => true, 'maxlength' => 255, 'rgxp' => 'email', 'unique' => true, 'decodeEntities' => true, 'tl_class' => 'clr long'),
+            'eval'      => array('mandatory' => true, 'maxlength' => 255, 'rgxp' => 'email', 'unique' => false, 'decodeEntities' => true, 'tl_class' => 'clr long'),
             'sql'       => "varchar(255) NOT NULL default ''"
         ),
         'website'             => array
@@ -247,7 +247,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'exclude'   => true,
             'search'    => true,
             'inputType' => 'text',
-            'eval'      => array('mandatory' => true, 'maxlength' => 255, 'rgxp' => 'email', 'unique' => true, 'decodeEntities' => true, 'tl_class' => 'clr long'),
+            'eval'      => array('mandatory' => true, 'maxlength' => 255, 'rgxp' => 'email', 'unique' => false, 'decodeEntities' => true, 'tl_class' => 'clr long'),
             'sql'       => "varchar(255) NOT NULL default ''"
         ),
     )
