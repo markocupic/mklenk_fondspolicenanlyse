@@ -1,0 +1,9 @@
+body.no-background-color, body.no-background-color .jPanelMenu-panel {
+    background: none !important;
+    background: #fff !important;
+}
+
+body.no-background-color #wrapper {
+    border-top: 15px solid transparent !important;
+    box-shadow: none !important;
+}

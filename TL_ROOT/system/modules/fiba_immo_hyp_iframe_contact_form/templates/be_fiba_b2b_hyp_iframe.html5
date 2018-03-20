@@ -1,5 +1,5 @@
 <!-- begin iframe for <?= $this->companyName ?> -->
 <div id="fibaIframeContainer" class="fiba-iframe-container">
-  <iframe  width="1000" height="800" src="<?= $this->href ?>"></iframe>
+  <iframe allowfullscreen="" width="100%" height="800" src="<?= $this->href ?>"></iframe>
 </div>
 <!-- end iframe -->

@@ -2,11 +2,24 @@
 
 <?php $this->block('content'); ?>
 
-<?php if($this->hasError): ?>
-<h2>Sie haben kein Recht diese Seite aufzurufen.</h2>
-<p class="error-msg"><?= $this->errorMsg ?></p>
+<?php if ($this->hasError): ?>
+  <h2>Sie haben kein Recht diese Seite aufzurufen.</h2>
+  <p class="error-msg"><?= $this->errorMsg ?></p>
 <?php else: ?>
-{{insert_form::<?= $this->form ?>}}
+    <?php if ($this->partner !== null): ?>
+    <div class="partnerHiredBy">
+        <?php if ($this->partner['partnerHiredByGender'] != ''): ?><span class="partnerHiredByGender"><?= $this->partner['partnerHiredByGender'] ?></span>{{br}}<?php endif; ?>
+        <?php if ($this->partner['partnerHiredByFirstname'] != ''): ?><span class="partnerHiredByFirstname"><?= $this->partner['partnerHiredByFirstname'] ?></span><?php endif; ?>&nbsp;
+        <?php if ($this->partner['partnerHiredByLastname'] != ''): ?><span class="partnerHiredByLastname"><?= $this->partner['partnerHiredByLastname'] ?></span>{{br}}<?php endif; ?>
+        <?php if ($this->partner['partnerHiredByStreet'] != ''): ?><span class="partnerHiredByStreet"><?= $this->partner['partnerHiredByStreet'] ?></span>{{br}}<?php endif; ?>
+        <?php if ($this->partner['partnerHiredByPostal'] != ''): ?><span class="partnerHiredByPostal"><?= $this->partner['partnerHiredByPostal'] ?></span><?php endif; ?>
+        <?php if ($this->partner['partnerHiredByCity'] != ''): ?><span class="partnerHiredByCity"><?= $this->partner['partnerHiredByCity'] ?></span>{{br}}<?php endif; ?>
+        <?php if ($this->partner['partnerHiredByPhone'] != ''): ?><span class="partnerHiredByPhone"><?= $this->partner['partnerHiredByPhone'] ?></span>{{br}}<?php endif; ?>
+      <!--<?php if ($this->partner['partnerHiredByEmail'] != ''): ?><span class="partnerHiredByEmail">Telefon: <?= $this->partner['partnerHiredByEmail'] ?></span>{{br}}<?php endif; ?>-->
+    </div>
+    <?php endif; ?>
+  {{br}}{{br}}
+  {{insert_form::<?= $this->form ?>}}
 <?php endif; ?>
 
 <?php $this->endblock(); ?>
