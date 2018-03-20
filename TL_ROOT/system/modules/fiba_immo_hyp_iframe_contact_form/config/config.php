@@ -43,7 +43,6 @@ if (TL_MODE == 'FE')
 
 // CSS
 if (TL_MODE == 'BE')
-<<<<<<< HEAD
 {
     $GLOBALS['TL_CSS'][] = 'system/modules/fiba_immo_hyp_iframe_contact_form/assets/css/be_style.css';
 }
@@ -51,8 +50,4 @@ if (TL_MODE == 'BE')
 if (TL_MODE == 'FE')
 {
     $GLOBALS['TL_CSS'][] = 'system/modules/fiba_immo_hyp_iframe_contact_form/assets/css/fe_style.css';
-=======
-{
-    $GLOBALS['TL_CSS'][] = 'system/modules/fiba_immo_hyp_iframe_contact_form/assets/css/be_style.css';
->>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
 }

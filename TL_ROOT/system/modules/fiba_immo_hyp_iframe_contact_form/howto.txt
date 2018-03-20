@@ -1,17 +1,17 @@
 Lieber Markus
 
-Nach einer eher kurzen Nacht habe ich heute die Erweiterung noch beendet und getestet.
+Nach einer eher kurzen Nacht habe ich heute die Erweiterung noch beendet nd getestet.
 Du kannst das Modul auch mal unter die Lupe nehmen.
 
-Es gibt ein Backend Modul "b2b Partner" ganz unten links. Hier pflegst du die Partner ein und generierst den HTML Schnipsel (encoded/decoded) Download.
+Es gibt ein Backend Modul "b2b Partner" ganz unten links. Hier pflegst du die Partner ein und machst den HTML Schnipsel Download. Das Schnipsel ist teilweise codiert für ganz neugierige Blicke. Ich hoffe, das funktioniert überall.
 
-Dazu gibt es ein Frontend Modul "Iframe Formular". Dieses pflegst du auf der Zielseite ein. Das Modul bindet dann auch automatisch das Formular ein.
+Dazu gibt es ein Frontend Modul "AAA Iframe Formular". Dieses pflegst du auf der Zielseite ein. Das Modul bindet dann auch automatisch das Formular ein.
 
 Als 3. Punkt musst du besagtes Formular mit den gewünschten Feldern erstellen. Das versteckte Feld companyName muss genau so heissen. Die anderen Felder kannst du auch anders benennen. Ich habe mich mal an den Contao Standard gehalten.
 
 Wenn du den Schnisel testen willst, kannst du den Code auf einer anderen Contao Installation in eine template Datei packen und diese in templates/iframeInclude.html5 abspeichern.
 
-Mit {{file::iframeInclude.html5}} kannst du das Schnipsel dann einbinden.
+Mit {{file::iframeInclude.html5}} kannst du das Schnipsel dann einbinden. Siehe Bild.
 
 Kommst du klar?
 
@@ -20,20 +20,3 @@ Liebe Grüsse und vielen Dank für den Auftrag.
 
 
 Marko
-
-
-Nachtrag!!!
-# Nelmio Security Options unter Contao 4
-
-
-Damit Requests, die durch die Verwendung eines Iframes unter Contao 4.x nicht geblockt werden, ist es nötig unter
-app/config.yml folgenden Eintrag zu machen.
-
-```
-
-nelmio_security:
-    clickjacking:
-        paths:
-            '^/.*': ALLOW
-
-```
