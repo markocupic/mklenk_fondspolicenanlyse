@@ -25,7 +25,11 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
         'enableVersioning'  => true,
         'onload_callback'   => array
         (
+<<<<<<< HEAD
             array('tl_fiba_b2b_partner', 'route'),
+=======
+            array('tl_fiba_b2b_partner', 'route')
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         ),
         'onsubmit_callback' => array
         (
@@ -42,8 +46,13 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
                 'id'             => 'primary',
                 'email'          => 'index',
                 'companyIdToken' => 'unique',
+<<<<<<< HEAD
             ),
         ),
+=======
+            )
+        )
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
     ),
 
     // List
@@ -54,13 +63,21 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'mode'        => 2,
             'fields'      => array('companyName DESC'),
             'flag'        => 1,
+<<<<<<< HEAD
             'panelLayout' => 'filter;sort,search,limit',
+=======
+            'panelLayout' => 'filter;sort,search,limit'
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         ),
         'label'             => array
         (
             'fields'         => array('', 'companyName', 'website'),
             'showColumns'    => true,
+<<<<<<< HEAD
             'label_callback' => array('tl_fiba_b2b_partner', 'addIcon'),
+=======
+            'label_callback' => array('tl_fiba_b2b_partner', 'addIcon')
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         ),
         'global_operations' => array
         (
@@ -69,8 +86,13 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
                 'label'      => &$GLOBALS['TL_LANG']['MSC']['all'],
                 'href'       => 'act=select',
                 'class'      => 'header_edit_all',
+<<<<<<< HEAD
                 'attributes' => 'onclick="Backend.getScrollOffset()" accesskey="e"',
             ),
+=======
+                'attributes' => 'onclick="Backend.getScrollOffset()" accesskey="e"'
+            )
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         ),
         'operations'        => array
         (
@@ -78,43 +100,70 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['edit'],
                 'href'  => 'act=edit',
+<<<<<<< HEAD
                 'icon'  => 'edit.gif',
+=======
+                'icon'  => 'edit.gif'
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
             ),
             'copy'   => array
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['copy'],
                 'href'  => 'act=copy',
+<<<<<<< HEAD
                 'icon'  => 'copy.gif',
+=======
+                'icon'  => 'copy.gif'
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
             ),
             'delete' => array
             (
                 'label'      => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['delete'],
                 'href'       => 'act=delete',
                 'icon'       => 'delete.gif',
+<<<<<<< HEAD
                 'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"',
+=======
+                'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
             ),
             'toggle' => array
             (
                 'label'           => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['toggle'],
                 'icon'            => 'visible.gif',
                 'attributes'      => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
+<<<<<<< HEAD
                 'button_callback' => array('tl_fiba_b2b_partner', 'toggleIcon'),
+=======
+                'button_callback' => array('tl_fiba_b2b_partner', 'toggleIcon')
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
             ),
             'show'   => array
             (
                 'label' => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['show'],
                 'href'  => 'act=show',
+<<<<<<< HEAD
                 'icon'  => 'show.gif',
             ),
 
         ),
+=======
+                'icon'  => 'show.gif'
+            ),
+
+        )
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
     ),
 
     // Palettes
     'palettes'    => array
     (
         //'__selector__' => array(),
+<<<<<<< HEAD
         'default' => '{company_legend},companyName,contactPersonName,phone,email,website;{iframe_legend},partnerHiredByGender,partnerHiredByFirstname,partnerHiredByLastname,partnerHiredByStreet,partnerHiredByPostal,partnerHiredByCity,partnerHiredByEmail,partnerHiredByPhone,targetPage,obfuscateIframe,htmlDownloadButton,companyIdToken,enableRefererCheck',
+=======
+        'default' => '{company_legend},companyName,contactPersonName,phone,email,website;{iframe_legend},partnerHiredByEmail,targetPage,obfuscateIframe,htmlDownloadButton,companyIdToken,enableRefererCheck',
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
     ),
 
     // Subpalettes
@@ -126,6 +175,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
     // Fields
     'fields'      => array
     (
+<<<<<<< HEAD
         'id'                      => array
         (
             'sql' => "int(10) unsigned NOT NULL auto_increment",
@@ -135,14 +185,31 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'sql' => "int(10) unsigned NOT NULL default '0'",
         ),
         'disable'                 => array
+=======
+        'id'                  => array
+        (
+            'sql' => "int(10) unsigned NOT NULL auto_increment"
+        ),
+        'tstamp'              => array
+        (
+            'sql' => "int(10) unsigned NOT NULL default '0'"
+        ),
+        'disable'             => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['disable'],
             'exclude'   => true,
             'filter'    => true,
             'inputType' => 'checkbox',
+<<<<<<< HEAD
             'sql'       => "char(1) NOT NULL default ''",
         ),
         'companyName'             => array
+=======
+            'sql'       => "char(1) NOT NULL default ''"
+        ),
+        'companyName'         => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['companyName'],
             'exclude'   => true,
@@ -151,9 +218,15 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'flag'      => 1,
             'inputType' => 'text',
             'eval'      => array('mandatory' => true, 'maxlength' => 255, 'tl_class' => 'clr long'),
+<<<<<<< HEAD
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
         'contactPersonName'       => array
+=======
+            'sql'       => "varchar(255) NOT NULL default ''"
+        ),
+        'contactPersonName'   => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['contactPersonName'],
             'exclude'   => true,
@@ -162,36 +235,60 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'flag'      => 1,
             'inputType' => 'text',
             'eval'      => array('mandatory' => true, 'maxlength' => 255, 'tl_class' => 'clr long'),
+<<<<<<< HEAD
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
         'phone'                   => array
+=======
+            'sql'       => "varchar(255) NOT NULL default ''"
+        ),
+        'phone'               => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['phone'],
             'exclude'   => true,
             'search'    => true,
             'inputType' => 'text',
             'eval'      => array('maxlength' => 64, 'rgxp' => 'phone', 'decodeEntities' => true, 'tl_class' => 'clr long'),
+<<<<<<< HEAD
             'sql'       => "varchar(64) NOT NULL default ''",
         ),
         'email'                   => array
+=======
+            'sql'       => "varchar(64) NOT NULL default ''"
+        ),
+        'email'               => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['email'],
             'exclude'   => true,
             'search'    => true,
             'inputType' => 'text',
             'eval'      => array('mandatory' => true, 'maxlength' => 255, 'rgxp' => 'email', 'unique' => false, 'decodeEntities' => true, 'tl_class' => 'clr long'),
+<<<<<<< HEAD
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
         'website'                 => array
+=======
+            'sql'       => "varchar(255) NOT NULL default ''"
+        ),
+        'website'             => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['website'],
             'exclude'   => true,
             'search'    => true,
             'inputType' => 'text',
             'eval'      => array('mandatory' => true, 'rgxp' => 'url', 'maxlength' => 255, 'tl_class' => 'clr long'),
+<<<<<<< HEAD
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
         'targetPage'              => array
+=======
+            'sql'       => "varchar(255) NOT NULL default ''"
+        ),
+        'targetPage'          => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'      => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['targetPage'],
             'exclude'    => true,
@@ -199,18 +296,30 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'foreignKey' => 'tl_page.title',
             'eval'       => array('mandatory' => true, 'fieldType' => 'radio', 'tl_class' => 'clr long'),
             'sql'        => "int(10) unsigned NOT NULL default '0'",
+<<<<<<< HEAD
             'relation'   => array('type' => 'hasOne', 'load' => 'lazy'),
         ),
         'htmlDownloadButton'      => array
+=======
+            'relation'   => array('type' => 'hasOne', 'load' => 'lazy')
+        ),
+        'htmlDownloadButton'  => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'                => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['htmlDownloadButton'],
             'exclude'              => true,
             'filter'               => false,
             'input_field_callback' => array('tl_fiba_b2b_partner', 'generateHtmlDownloadButton'),
             'eval'                 => array('doNotShow' => true, 'tl_class' => 'clr long'),
+<<<<<<< HEAD
             'sql'                  => "char(1) NOT NULL default ''",
         ),
         'companyIdToken'          => array
+=======
+            'sql'                  => "char(1) NOT NULL default ''"
+        ),
+        'companyIdToken'      => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'         => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['companyIdToken'],
             'exclude'       => true,
@@ -219,18 +328,30 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'load_callback' => array(array('tl_fiba_b2b_partner', 'generateCompanyIdToken')),
             'inputType'     => 'text',
             'eval'          => array('mandatory' => true, 'readonly' => true, 'submitOnChange' => true, 'tl_class' => 'clr long'),
+<<<<<<< HEAD
             'sql'           => "varchar(255) NOT NULL default ''",
         ),
         'enableRefererCheck'      => array
+=======
+            'sql'           => "varchar(255) NOT NULL default ''"
+        ),
+        'enableRefererCheck'  => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['enableRefererCheck'],
             'exclude'   => true,
             'filter'    => true,
             'inputType' => 'checkbox',
             'eval'      => array('tl_class' => 'clr long'),
+<<<<<<< HEAD
             'sql'       => "char(1) NOT NULL default ''",
         ),
         'obfuscateIframe'         => array
+=======
+            'sql'       => "char(1) NOT NULL default ''"
+        ),
+        'obfuscateIframe'     => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['obfuscateIframe'],
             'exclude'   => true,
@@ -239,6 +360,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'inputType' => 'select',
             'options'   => array('decoded', 'encoded'),
             'eval'      => array('tl_class' => 'clr long'),
+<<<<<<< HEAD
             'sql'       => "varchar(128) NOT NULL default ''",
         ),
         'partnerHiredByGender'    => array
@@ -303,11 +425,17 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
         'partnerHiredByEmail'     => array
+=======
+            'sql'       => "varchar(128) NOT NULL default ''"
+        ),
+        'partnerHiredByEmail' => array
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByEmail'],
             'exclude'   => true,
             'search'    => true,
             'inputType' => 'text',
+<<<<<<< HEAD
             'eval'      => array('mandatory' => true, 'maxlength' => 255, 'rgxp' => 'email', 'unique' => false, 'decodeEntities' => true, 'tl_class' => 'w50'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
@@ -321,6 +449,12 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'sql'       => "varchar(64) NOT NULL default ''",
         ),
     ),
+=======
+            'eval'      => array('mandatory' => true, 'maxlength' => 255, 'rgxp' => 'email', 'unique' => false, 'decodeEntities' => true, 'tl_class' => 'clr long'),
+            'sql'       => "varchar(255) NOT NULL default ''"
+        ),
+    )
+>>>>>>> a1c556eeea272f0a35d0c7f4a0e7ecaaca2a62bf
 );
 
 
