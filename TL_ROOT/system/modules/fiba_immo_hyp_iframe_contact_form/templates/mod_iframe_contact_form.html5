@@ -8,6 +8,7 @@
 <?php else: ?>
     <?php if ($this->partner !== null): ?>
     <div class="partnerHiredBy">
+        <?php if ($this->partner['partnerHiredByTitle'] != ''): ?><span class="partnerHiredByTitle"><?= $this->partner['partnerHiredByTitle'] ?></span>{{br}}<?php endif; ?>
         <?php if ($this->partner['partnerHiredByGender'] != ''): ?><span class="partnerHiredByGender"><?= $this->partner['partnerHiredByGender'] ?></span>{{br}}<?php endif; ?>
         <?php if ($this->partner['partnerHiredByFirstname'] != ''): ?><span class="partnerHiredByFirstname"><?= $this->partner['partnerHiredByFirstname'] ?></span><?php endif; ?>&nbsp;
         <?php if ($this->partner['partnerHiredByLastname'] != ''): ?><span class="partnerHiredByLastname"><?= $this->partner['partnerHiredByLastname'] ?></span>{{br}}<?php endif; ?>
