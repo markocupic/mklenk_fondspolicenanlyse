@@ -114,7 +114,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
     'palettes'    => array
     (
         //'__selector__' => array(),
-        'default' => '{company_legend},companyName,contactPersonName,phone,email,website;{iframe_legend},headline_1,headline_2,partnerHiredByTitle,partnerHiredByGender,partnerHiredByFirstname,partnerHiredByLastname,partnerHiredByStreet,partnerHiredByPostal,partnerHiredByCity,partnerHiredByEmail,partnerHiredByPhone,targetPage,obfuscateIframe,htmlDownloadButton,companyIdToken,enableRefererCheck',
+        'default' => '{company_legend},companyName,contactPersonName,phone,email,website;{iframe_legend},partnerHiredByHeadlineContent,partnerHiredByTitle,partnerHiredByGender,partnerHiredByFirstname,partnerHiredByLastname,partnerHiredByStreet,partnerHiredByPostal,partnerHiredByCity,partnerHiredByEmail,partnerHiredByPhone,targetPage,obfuscateIframe,htmlDownloadButton,companyIdToken,enableRefererCheck',
     ),
 
     // Subpalettes
@@ -126,15 +126,15 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
     // Fields
     'fields'      => array
     (
-        'id'                      => array
+        'id'                            => array
         (
             'sql' => "int(10) unsigned NOT NULL auto_increment",
         ),
-        'tstamp'                  => array
+        'tstamp'                        => array
         (
             'sql' => "int(10) unsigned NOT NULL default '0'",
         ),
-        'disable'                 => array
+        'disable'                       => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['disable'],
             'exclude'   => true,
@@ -142,7 +142,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'inputType' => 'checkbox',
             'sql'       => "char(1) NOT NULL default ''",
         ),
-        'companyName'             => array
+        'companyName'                   => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['companyName'],
             'exclude'   => true,
@@ -153,7 +153,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('mandatory' => true, 'maxlength' => 255, 'tl_class' => 'clr long'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'contactPersonName'       => array
+        'contactPersonName'             => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['contactPersonName'],
             'exclude'   => true,
@@ -164,7 +164,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('mandatory' => true, 'maxlength' => 255, 'tl_class' => 'clr long'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'phone'                   => array
+        'phone'                         => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['phone'],
             'exclude'   => true,
@@ -173,7 +173,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('maxlength' => 64, 'rgxp' => 'phone', 'decodeEntities' => true, 'tl_class' => 'clr long'),
             'sql'       => "varchar(64) NOT NULL default ''",
         ),
-        'email'                   => array
+        'email'                         => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['email'],
             'exclude'   => true,
@@ -182,7 +182,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('mandatory' => true, 'maxlength' => 255, 'rgxp' => 'email', 'unique' => false, 'decodeEntities' => true, 'tl_class' => 'clr long'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'website'                 => array
+        'website'                       => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['website'],
             'exclude'   => true,
@@ -191,7 +191,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('mandatory' => true, 'rgxp' => 'url', 'maxlength' => 255, 'tl_class' => 'clr long'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'targetPage'              => array
+        'targetPage'                    => array
         (
             'label'      => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['targetPage'],
             'exclude'    => true,
@@ -201,7 +201,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'sql'        => "int(10) unsigned NOT NULL default '0'",
             'relation'   => array('type' => 'hasOne', 'load' => 'lazy'),
         ),
-        'htmlDownloadButton'      => array
+        'htmlDownloadButton'            => array
         (
             'label'                => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['htmlDownloadButton'],
             'exclude'              => true,
@@ -210,7 +210,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'                 => array('doNotShow' => true, 'tl_class' => 'clr long'),
             'sql'                  => "char(1) NOT NULL default ''",
         ),
-        'companyIdToken'          => array
+        'companyIdToken'                => array
         (
             'label'         => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['companyIdToken'],
             'exclude'       => true,
@@ -221,7 +221,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'          => array('mandatory' => true, 'readonly' => true, 'submitOnChange' => true, 'tl_class' => 'clr long'),
             'sql'           => "varchar(255) NOT NULL default ''",
         ),
-        'enableRefererCheck'      => array
+        'enableRefererCheck'            => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['enableRefererCheck'],
             'exclude'   => true,
@@ -230,7 +230,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('tl_class' => 'clr long'),
             'sql'       => "char(1) NOT NULL default ''",
         ),
-        'obfuscateIframe'         => array
+        'obfuscateIframe'               => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['obfuscateIframe'],
             'exclude'   => true,
@@ -241,25 +241,17 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('tl_class' => 'clr long'),
             'sql'       => "varchar(128) NOT NULL default ''",
         ),
-        'headline_1'              => array
+        'partnerHiredByHeadlineContent' => array
         (
-            'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['headline_1'],
-            'exclude'   => true,
-            'filter'    => true,
-            'inputType' => 'text',
-            'eval'      => array('mandatory' => true, 'tl_class' => 'w50'),
-            'sql'       => "varchar(255) NOT NULL default ''",
+            'label'       => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByHeadlineContent'],
+            'exclude'     => true,
+            'search'      => true,
+            'inputType'   => 'textarea',
+            'eval'        => array('mandatory' => false, 'rte' => 'tinyMCE', 'helpwizard' => true),
+            'explanation' => 'insertTags',
+            'sql'         => "mediumtext NULL",
         ),
-        'headline_2'              => array
-        (
-            'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['headline_2'],
-            'exclude'   => true,
-            'filter'    => true,
-            'inputType' => 'text',
-            'eval'      => array('mandatory' => true, 'tl_class' => 'w50'),
-            'sql'       => "varchar(255) NOT NULL default ''",
-        ),
-        'partnerHiredByTitle'     => array
+        'partnerHiredByTitle'           => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByTitle'],
             'exclude'   => true,
@@ -270,7 +262,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('mandatory' => false, 'maxlength' => 255, 'tl_class' => 'clr long'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'partnerHiredByGender'    => array
+        'partnerHiredByGender'          => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByGender'],
             'exclude'   => true,
@@ -280,7 +272,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('includeBlankOption' => true, 'tl_class' => 'clr'),
             'sql'       => "varchar(32) NOT NULL default ''",
         ),
-        'partnerHiredByFirstname' => array
+        'partnerHiredByFirstname'       => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByFirstname'],
             'exclude'   => true,
@@ -291,7 +283,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('mandatory' => false, 'maxlength' => 255, 'tl_class' => 'w50'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'partnerHiredByLastname'  => array
+        'partnerHiredByLastname'        => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByLastname'],
             'exclude'   => true,
@@ -302,7 +294,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('mandatory' => false, 'maxlength' => 255, 'tl_class' => 'w50'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'partnerHiredByStreet'    => array
+        'partnerHiredByStreet'          => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByStreet'],
             'exclude'   => true,
@@ -311,7 +303,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('maxlength' => 255, 'tl_class' => 'clr long'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'partnerHiredByPostal'    => array
+        'partnerHiredByPostal'          => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByPostal'],
             'exclude'   => true,
@@ -320,7 +312,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('maxlength' => 32, 'tl_class' => 'w50'),
             'sql'       => "varchar(32) NOT NULL default ''",
         ),
-        'partnerHiredByCity'      => array
+        'partnerHiredByCity'            => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByCity'],
             'exclude'   => true,
@@ -331,7 +323,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('maxlength' => 255, 'tl_class' => 'w50'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'partnerHiredByEmail'     => array
+        'partnerHiredByEmail'           => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByEmail'],
             'exclude'   => true,
@@ -340,7 +332,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('mandatory' => true, 'maxlength' => 255, 'rgxp' => 'email', 'unique' => false, 'decodeEntities' => true, 'tl_class' => 'w50'),
             'sql'       => "varchar(255) NOT NULL default ''",
         ),
-        'partnerHiredByPhone'     => array
+        'partnerHiredByPhone'           => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByPhone'],
             'exclude'   => true,
