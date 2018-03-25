@@ -114,7 +114,7 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
     'palettes'    => array
     (
         //'__selector__' => array(),
-        'default' => '{company_legend},companyName,contactPersonName,phone,email,website;{iframe_legend},partnerHiredByTitle,partnerHiredByGender,partnerHiredByFirstname,partnerHiredByLastname,partnerHiredByStreet,partnerHiredByPostal,partnerHiredByCity,partnerHiredByEmail,partnerHiredByPhone,targetPage,obfuscateIframe,htmlDownloadButton,companyIdToken,enableRefererCheck',
+        'default' => '{company_legend},companyName,contactPersonName,phone,email,website;{iframe_legend},headline_1,headline_2,partnerHiredByTitle,partnerHiredByGender,partnerHiredByFirstname,partnerHiredByLastname,partnerHiredByStreet,partnerHiredByPostal,partnerHiredByCity,partnerHiredByEmail,partnerHiredByPhone,targetPage,obfuscateIframe,htmlDownloadButton,companyIdToken,enableRefererCheck',
     ),
 
     // Subpalettes
@@ -241,7 +241,25 @@ $GLOBALS['TL_DCA']['tl_fiba_b2b_partner'] = array
             'eval'      => array('tl_class' => 'clr long'),
             'sql'       => "varchar(128) NOT NULL default ''",
         ),
-        'partnerHiredByTitle'    => array
+        'headline_1'              => array
+        (
+            'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['headline_1'],
+            'exclude'   => true,
+            'filter'    => true,
+            'inputType' => 'text',
+            'eval'      => array('mandatory' => true, 'tl_class' => 'w50'),
+            'sql'       => "varchar(255) NOT NULL default ''",
+        ),
+        'headline_2'              => array
+        (
+            'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['headline_2'],
+            'exclude'   => true,
+            'filter'    => true,
+            'inputType' => 'text',
+            'eval'      => array('mandatory' => true, 'tl_class' => 'w50'),
+            'sql'       => "varchar(255) NOT NULL default ''",
+        ),
+        'partnerHiredByTitle'     => array
         (
             'label'     => &$GLOBALS['TL_LANG']['tl_fiba_b2b_partner']['partnerHiredByTitle'],
             'exclude'   => true,
