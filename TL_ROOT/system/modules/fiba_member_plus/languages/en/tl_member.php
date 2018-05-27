@@ -23,7 +23,7 @@ $GLOBALS['TL_LANG']['tl_member']['empfehlungsgeberEmpohleneKunden'] = array('Emp
 $GLOBALS['TL_LANG']['tl_member']['betreutDurchVermittlerId'] = array('Einen Betreuer/Vermittler auswählen', 'Geben Sie den Namen des Betreuers/Vermittlers an.');
 $GLOBALS['TL_LANG']['tl_member']['iban'] = array('IBAN', 'Geben Sie eine IBAN-Nummer ein.');
 $GLOBALS['TL_LANG']['tl_member']['bankName'] = array('Bankname', 'Geben Sie den Namen Ihrer Bank ein.');
-$GLOBALS['TL_LANG']['tl_member']['agb'] = array('Bitte bestätigen, um fortzufahren.', 'Hiermit bestätige ich die Nutzungs- & Teilnahmebedingungen.');
+$GLOBALS['TL_LANG']['tl_member']['agb'] = array('Bitte bestätigen, um fortzufahren.', 'Hiermit bestätige ich die Nutzungs- & Teilnahmebedingungen sowie die Datenschutzbestimmungen.');
 $GLOBALS['TL_LANG']['tl_member']['street'] = array('Straße und Hausnummer', 'Hiermit bestätige ich die Nutzungs- & Teilnahmebedingungen.');
 
 
